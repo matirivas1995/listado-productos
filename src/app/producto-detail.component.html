@@ -1,0 +1,27 @@
+<div *ngIf="producto">
+  <h2>Detalles de {{producto.name}}:</h2>
+  <div>
+    <label>id: </label>{{producto.id}}</div>
+  <div>
+    <label>name: </label>
+    <input [(ngModel)]="producto.name" placeholder="name" />
+    </div>
+  <div>
+    <label>descripcion: </label>
+    <input [(ngModel)]="producto.descripcion" placeholder="descripcion" /></div>
+  <div>
+    <label>precio: </label>
+    <input [(ngModel)]="producto.precio" placeholder="precio" /></div>
+  <div>
+    <label>foto: </label>
+    <input [(ngModel)]="producto.foto" placeholder="foto" />
+    <img src={{producto.foto}} alt="labatamanta">
+  <div>
+    <label>tipo: </label>
+    <input [(ngModel)]="producto.tipo" placeholder="tipo" /></div>
+  <div>
+    <label>cantidad: </label>
+    <input [(ngModel)]="producto.cantidad" placeholder="cantidad" /></div>
+  <button (click)="goBack()">Atras</button>
+  <button (click)="save()">Guardar</button>
+</div>

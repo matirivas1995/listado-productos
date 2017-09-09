@@ -1,0 +1,12 @@
+<form #loginForm="ngForm" action="/action_page.php" (ngSubmit)="login(loginForm)" >
+  
+    <div class="container">
+      <label><b>Usuario</b></label>
+      <input type="text" id="username" placeholder="Ingrese nombre de usuario" name="username" required ngModel>
+  
+      <label><b>Contraseña</b></label>
+      <input type="password" id="password" placeholder="Ingrese contraseña" name="password" required ngModel>
+  
+      <button type="submit">Login</button>
+    </div>
+</form>

@@ -1,0 +1,11 @@
+<div id="search-component">
+    <label>Filtrar por Nombre:</label><input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+  <div>
+    <div *ngFor="let producto of productos | async"
+         (click)="gotoDetail(producto)" class="search-result" >
+         <span>{{producto.name}}</span>
+         <span>{{producto.descripcion}}</span>
+         <span>{{producto.precio}}</span>
+    </div>
+  </div>
+</div>

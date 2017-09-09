@@ -1,0 +1,164 @@
+<div>
+  <h1>Categorias</h1>
+  <div class="row">
+    
+    <div class="col s2 m6 l4">
+      
+      <div class="card horizontal">
+        
+        <div class="card-image">
+          <i class="large material-icons vertical-center">drive_eta</i>
+        </div>
+      
+        <div class="card-stacked">
+      
+          <div class="card-content">
+            <p>Todo lo que necesitas para tu automovil</p>
+          </div>
+         <div class="card-action">
+            <a (click)="filter(vehiculo)">Automovil</a>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+    <div class="col s2 m6 l4">
+    
+      <div class="card horizontal">
+        
+        <div class="card-image">
+          <i class="large material-icons vertical-center">local_dining</i>
+        </div>
+        
+        <div class="card-stacked">
+          
+          <div class="card-content">
+            <p>Los mejores productos para tu mesa</p>
+          </div>
+          
+          <div class="card-action">
+            <a href="#">Comestibles</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col s2 m6 l4">
+      
+      <div class="card horizontal">
+        
+        <div class="card-image">
+          <i class="large material-icons vertical-center">account_balance</i>
+        </div>
+
+        <div class="card-stacked">
+          
+          <div class="card-content">
+            <p>Necesitas algo para tu hogar?</p>
+          </div>
+          
+          <div class="card-action">
+            <a href="#">Hogar</a>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>  
+
+  <h1> Lista de Productos </h1>
+
+
+  <div class="contenedor">
+    <!-- Table starts here -->
+
+    <div class="row">
+        <div class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">search</i>
+              <input type="text" id="autocomplete-input" class="autocomplete">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    <table class="centered highlight responsive-table" >
+      <thead>    
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripcion</th>
+          <th>Precio</th>
+        </tr>
+      </thead>  
+      <tbody>
+        <tr *ngFor="let producto of productos | async" (click)="onSelect(producto)"
+            [class.selected]="producto === selectedProducto">
+          <td >{{producto.id}}</td>
+          <td >{{producto.name}}</td>
+          <td >{{producto.descripcion}}</td>
+          <td >{{producto.precio}}</td>
+          <a class="waves-effect waves-light btn red"  (click)="delete(producto); $event.stopPropagation()">x</a>
+          <a class="waves-effect waves-light btn cyan"  (click)="gotoDetail()"><i class="material-icons" (click)="gotoDetail()">create</i></a>
+        </tr>
+      </tbody>
+    </table>
+
+    <br>
+
+    <a class="btn-floating btn-large waves-effect waves-light red right pulse" (click)="agregarProducto=!agregarProducto"><i class="material-icons">+</i></a>
+      
+    <br><br><br><br>
+
+    <div class="row" *ngIf="agregarProducto">
+        <div class="col s12 m6">
+            <div class="card blue-grey darken-1">
+              <div class="card-content white-text">
+
+              <span class="card-title">Nuevo Producto</span>
+
+              <div>
+                <label for="name">Nombre:</label> 
+                <input #productoname type="text" class="validate active" id="name"/>
+              </div>
+              <div>
+                <input #productodesc type="text" class="validate" id="name"/>
+                <label for="name">Descripcion:</label> 
+              </div>
+              <div>
+                <input #productoprice type="number" class="validate" id="price"/>
+                <label for="price">Precio:</label> 
+              </div>
+              <div>
+                <select>
+                  <option value="" >Choose your option</option>
+                  <option value="Casa">Casa</option>
+                  <option value="Automovil">Automovil</option>
+                  <option value="Comida">Comida</option>
+                </select>
+                <label>Tipo:</label>
+              </div>
+            </div>
+            <div class="card-action">
+              <button class="btn waves-effect waves-light green fix right large" type="submit" name="action" (click)="add(productoname.value,
+                                                                                                                productodesc.value,
+                                                                                                                productoprice.value,
+                                                                                                                productotipo.value);
+                                                                                                                productoname.value='';
+                                                                                                                productodesc.value='';
+                                                                                                                productoprice.value='';
+                                                                                                                productotipo.value=''">
+              <i class="material-icons center">send</i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>    
+    </div>
+  </div>
