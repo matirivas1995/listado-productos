@@ -3,36 +3,29 @@
   <div class="row">
     
     <div class="col s2 m6 l4">
-      
       <div class="card horizontal">
-        
         <div class="card-image">
           <i class="large material-icons vertical-center">drive_eta</i>
         </div>
       
         <div class="card-stacked">
-      
           <div class="card-content">
             <p>Todo lo que necesitas para tu automovil</p>
           </div>
-         <div class="card-action">
+          <div class="card-action">
             <a (click)="filter(vehiculo)">Automovil</a>
           </div>
+        </div>
       </div>
     </div>
-  </div>
-
 
     <div class="col s2 m6 l4">
-    
       <div class="card horizontal">
-        
         <div class="card-image">
           <i class="large material-icons vertical-center">local_dining</i>
         </div>
         
         <div class="card-stacked">
-          
           <div class="card-content">
             <p>Los mejores productos para tu mesa</p>
           </div>
@@ -46,15 +39,12 @@
     </div>
 
     <div class="col s2 m6 l4">
-      
       <div class="card horizontal">
-        
         <div class="card-image">
           <i class="large material-icons vertical-center">account_balance</i>
         </div>
 
         <div class="card-stacked">
-          
           <div class="card-content">
             <p>Necesitas algo para tu hogar?</p>
           </div>
@@ -76,15 +66,15 @@
     <!-- Table starts here -->
 
     <div class="row">
-        <div class="col s12">
-          <div class="row">
-            <div class="input-field col s12">
-              <i class="material-icons prefix">search</i>
-              <input type="text" id="autocomplete-input" class="autocomplete">
-            </div>
+      <div class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix">search</i>
+            <input type="text" id="autocomplete-input" class="autocomplete">
           </div>
         </div>
       </div>
+    </div>
 
 
     <table class="centered highlight responsive-table" >
@@ -116,36 +106,49 @@
     <br><br><br><br>
 
     <div class="row" *ngIf="agregarProducto">
-        <div class="col s12 m6">
-            <div class="card blue-grey darken-1">
-              <div class="card-content white-text">
-
-              <span class="card-title">Nuevo Producto</span>
-
-              <div>
-                <label for="name">Nombre:</label> 
-                <input #productoname type="text" class="validate active" id="name"/>
+      <form class="col s12 m6 form-horizontal">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <fieldset>
+              <legend>Nuevo Producto</legend>
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="productoname">Nombre:</label> 
+                <div class="col-md-4">
+                  <input #productoname type="text" class="form-control input-md" id="productoname"/>
+                </div>
               </div>
-              <div>
-                <input #productodesc type="text" class="validate" id="name"/>
-                <label for="name">Descripcion:</label> 
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="productodesc">Descripcion:</label>
+                <div class="col-md-4">
+                  <input #productodesc type="text" class="form-control input-md" id="productodesc"/>
+                </div> 
               </div>
-              <div>
-                <input #productoprice type="number" class="validate" id="price"/>
-                <label for="price">Precio:</label> 
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="productoprice">Precio:</label>
+                <div class="col-md-4">
+                  <input #productoprice type="number" class="form-control input-md" id="productoprice"/>
+                </div>
               </div>
-              <div>
-                <select>
-                  <option value="" >Choose your option</option>
-                  <option value="Casa">Casa</option>
-                  <option value="Automovil">Automovil</option>
-                  <option value="Comida">Comida</option>
-                </select>
-                <label>Tipo:</label>
+              <div class="form-group">
+                  <label class="col-md-4 control-label" for="filebutton">Foto</label>
+                  <div class="col-md-4">
+                    <input id="filebutton" name="filebutton" class="input-file" type="file">
+                  </div>
+                </div>
+              <div class="form-group">
+                <label class="col-md-4 control-label" for="tipo_producto">Tipo:</label>
+                <div class="col-md-4">
+                  <select id="tipo_producto" name="tipo_producto" class="form-control validate">
+                    <option value="Casa">Casa</option>
+                    <option value="Automovil">Automovil</option>
+                    <option value="Comida">Comida</option>
+                  </select>
+                </div>
               </div>
-            </div>
-            <div class="card-action">
-              <button class="btn waves-effect waves-light green fix right large" type="submit" name="action" (click)="add(productoname.value,
+            </fieldset>
+          </div>
+          <div class="card-action">
+            <button class="btn waves-effect waves-light green fix right large" type="submit" name="action" (click)="add(productoname.value,
                                                                                                                 productodesc.value,
                                                                                                                 productoprice.value,
                                                                                                                 productotipo.value);
@@ -154,11 +157,10 @@
                                                                                                                 productoprice.value='';
                                                                                                                 productotipo.value=''">
               <i class="material-icons center">send</i>
-              </button>
-            </div>
+            </button>
           </div>
-
-        </div>
+          </div>
+        </form>
       </div>    
-    </div>
   </div>
+</div>

@@ -111,3 +111,14 @@ tr.badge {
 .example-full-width {
   width: 100%;
 }
+
+
+legend {
+  color: #FFFFFF;
+}
+
+.control-label{
+  margin: 0px;
+  font-size: 14px;
+  color: white;
+}
