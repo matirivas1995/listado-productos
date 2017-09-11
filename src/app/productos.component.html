@@ -62,9 +62,8 @@
   <h1> Lista de Productos </h1>
 
 
-  <div class="contenedor">
+  <div class="contenedor" *ngIf="mostrarTabla">
     <!-- Table starts here -->
-
     <div class="row">
       <div class="col s12">
         <div class="row">
@@ -75,8 +74,6 @@
         </div>
       </div>
     </div>
-
-
     <table class="centered highlight responsive-table" >
       <thead>    
         <tr>
@@ -98,71 +95,72 @@
         </tr>
       </tbody>
     </table>
-
-    <br>
-
-    <a class="btn-floating btn-large waves-effect waves-light red right pulse" (click)="addProducto()"><i class="material-icons">+</i></a>
-      
-    <br><br><br><br>
-
-    <div class="row" *ngIf="mostrarFormulario">
-      <div class="col s12 m6 form-horizontal">
-        <div class="card blue-grey darken-1">
-          <div class="card-content white-text">
-            <fieldset>
-              <legend>Nuevo Producto</legend>
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="productoid">ID:</label> 
-                <div class="col-md-4">
-                  <input  type="number" class="form-control input-md" id="productoid" [ngModel]="nuevoProducto?.id" (ngModelChange)="nuevoProducto.id = $event"/>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="productoname">Nombre:</label> 
-                <div class="col-md-4">
-                  <input  type="text" class="form-control input-md" id="productoname" [ngModel]="nuevoProducto?.name" (ngModelChange)="nuevoProducto.name = $event"/>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="productodesc">Descripcion:</label>
-                <div class="col-md-4">
-                  <input  type="text" class="form-control input-md" id="productodesc" [ngModel]="nuevoProducto?.descripcion" (ngModelChange)="nuevoProducto.descripcion = $event"/>
-                </div> 
-              </div>
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="productoprice">Precio:</label>
-                <div class="col-md-4">
-                  <input  type="number" class="form-control input-md" id="productoprice" [ngModel]="nuevoProducto?.price" (ngModelChange)="nuevoProducto.price = $event"/>
-                </div>
-              </div>
-              <div class="form-group">
-                  <label class="col-md-4 control-label" for="filebutton">Foto</label>
-                  <div class="col-md-4">
-                    <input id="filebutton" name="filebutton" class="input-file" type="file" >
-                  </div>
-                </div>
-              <div class="form-group">
-                <label class="col-md-4 control-label" for="tipo_producto">Tipo:</label>
-                <div class="col-md-4">
-                  <select  id="tipo_producto" name="tipo_producto" class="form-control validate">
-                    <option value="Casa">Casa</option>
-                    <option value="Automovil">Automovil</option>
-                    <option value="Comida">Comida</option>
-                  </select>
-                </div>
-              </div>
-            </fieldset>
-          </div>
-          <div class="card-action">
-            <button class="btn waves-effect waves-light green fix right large" name="action" (click)="createProducto()">
-              <i class="material-icons center">send</i>
-            </button>
-            <button class="btn waves-effect waves-light red fix right large" name="action" (click)="cancel()">
-              <i class="material-icons center">X</i>
-            </button>
-          </div>
-          </div>
-        </div>
-      </div>    
+    <br>  
   </div>
+  <!-- El boton para agregar productos -->
+  <div class="contenedor" *ngIf="!mostrarFormulario">
+    <a class="btn-floating btn-large waves-effect waves-light red right pulse" (click)="addProducto()"><i class="material-icons">+</i></a>
+    <br><br><br><br>
+  </div>
+  <!-- El formulario para agregar productos -->
+  <div class="row" *ngIf="mostrarFormulario">
+    <div class="col s12 m6 form-horizontal">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <fieldset>
+            <legend>Nuevo Producto</legend>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="productoid">ID:</label> 
+              <div class="col-md-4">
+                <input  type="number" class="form-control input-md" id="productoid" [ngModel]="nuevoProducto?.id" (ngModelChange)="nuevoProducto.id = $event"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="productoname">Nombre:</label> 
+              <div class="col-md-4">
+                <input  type="text" class="form-control input-md" id="productoname" [ngModel]="nuevoProducto?.name" (ngModelChange)="nuevoProducto.name = $event"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="productodesc">Descripcion:</label>
+              <div class="col-md-4">
+                <input  type="text" class="form-control input-md" id="productodesc" [ngModel]="nuevoProducto?.descripcion" (ngModelChange)="nuevoProducto.descripcion = $event"/>
+              </div> 
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="productoprice">Precio:</label>
+              <div class="col-md-4">
+                <input  type="number" class="form-control input-md" id="productoprice" [ngModel]="nuevoProducto?.price" (ngModelChange)="nuevoProducto.price = $event"/>
+              </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="filebutton">Foto</label>
+                <div class="col-md-4">
+                  <input id="filebutton" name="filebutton" class="input-file" type="file" >
+                </div>
+              </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="tipo_producto">Tipo:</label>
+              <div class="col-md-4">
+                <select  id="tipo_producto" name="tipo_producto" class="form-control validate">
+                  <option value="Casa">Casa</option>
+                  <option value="Automovil">Automovil</option>
+                  <option value="Comida">Comida</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="card-action">
+          <button class="btn waves-effect waves-light green fix right large" name="action" (click)="createProducto()">
+            <i class="material-icons center">send</i>
+          </button>
+          <button class="btn waves-effect waves-light red fix right large" name="action" (click)="cancel()">
+            <i class="material-icons center">X</i>
+          </button>
+        </div>
+        </div>
+      </div>
+    </div>
+
 </div>

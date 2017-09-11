@@ -15,6 +15,7 @@ export class ProductosComponent implements OnInit {
   selectedProducto: Producto;
   nuevoProducto = {  id: null, name:null,  descripcion: null, price: null,  };
 
+  mostrarTabla:boolean=true;
   mostrarFormulario:boolean=false;
   filtrarProducto:boolean=false;
   
@@ -35,22 +36,27 @@ export class ProductosComponent implements OnInit {
 
   addProducto(){
     this.mostrarFormulario=true;
+    this.mostrarTabla=false;
   }
 
+  //Pone los datos del formulario para editar
   viewProducto(nuevoProducto){
     this.nuevoProducto=nuevoProducto;
-    this.mostrarFormulario=true;    
+    this.mostrarFormulario=true;   
+    this.mostrarTabla=false; 
   }
 
   createProducto(){
       this.af.database.ref('productos/'+this.nuevoProducto.id).set(this.nuevoProducto);
       this.mostrarFormulario=false;
       this.limpiarFormulario();
+      this.mostrarTabla=true;
   }
 
   cancel(){
     this.limpiarFormulario();
-    this.mostrarFormulario=false;    
+    this.mostrarFormulario=false;
+    this.mostrarTabla=true;    
   }
 
   delete(producto: Producto): void {
