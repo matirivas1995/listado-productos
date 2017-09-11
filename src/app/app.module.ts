@@ -23,6 +23,8 @@ import { LoginComponent } from './login.component';
 import { LoginGuard } from './login.guard';
 import { NoLoginGuard } from './no-login.guard';
 
+import {ColorPickerModule} from 'angular4-color-picker';
+
 export const firebaseConfig = {
   apiKey: "AIzaSyBTGY08NdYQq6BuT2JgjuYo4QTnAYm8IJ0",
   authDomain: "productos-angular.firebaseapp.com",
@@ -40,7 +42,8 @@ export const firebaseConfig = {
     InMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig,'listado-prodctos'),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    ColorPickerModule
   ],
   declarations: [
     AppComponent,
