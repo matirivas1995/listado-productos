@@ -138,7 +138,7 @@
               <div class="form-group">
                 <label class="col-md-4 control-label" for="tipo_producto">Tipo:</label>
                 <div class="col-md-4">
-                  <select id="tipo_producto" name="tipo_producto" class="form-control validate">
+                  <select #productotipo id="tipo_producto" name="tipo_producto" class="form-control validate">
                     <option value="Casa">Casa</option>
                     <option value="Automovil">Automovil</option>
                     <option value="Comida">Comida</option>
@@ -148,7 +148,7 @@
             </fieldset>
           </div>
           <div class="card-action">
-            <button class="btn waves-effect waves-light green fix right large" type="submit" name="action" (click)="add(productoname.value,
+            <button class="btn waves-effect waves-light green fix right large" name="action" (click)="add(productoname.value,
                                                                                                                 productodesc.value,
                                                                                                                 productoprice.value,
                                                                                                                 productotipo.value);
