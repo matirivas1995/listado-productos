@@ -44,6 +44,11 @@ export class ProductosComponent implements OnInit {
       this.nuevoProducto = {  id: null, name:null,  descripcion: null, price: null,  };
   }
 
+  cancel(){
+    this.nuevoProducto = {  id: null, name:null,  descripcion: null, price: null,  };    
+    this.agregarProducto=false;    
+  }
+
   delete(producto: Producto): void {
     this.af.object('/productos/'+producto.id).remove();
   }
