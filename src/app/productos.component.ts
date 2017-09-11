@@ -47,6 +47,9 @@ export class ProductosComponent implements OnInit {
   }
 
   createProducto(){
+      console.log(this.nuevoProducto.color)
+      console.log(this.nuevoProducto.name)
+      console.log(this.nuevoProducto.id)
       this.af.database.ref('productos/'+this.nuevoProducto.id).set(this.nuevoProducto);
       this.mostrarFormulario=false;
       this.limpiarFormulario();

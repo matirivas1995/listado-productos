@@ -7,4 +7,6 @@ export class Producto {
   color: string;
   tipo: string;
   cantidad: number;
+  dimensiones: string;
+  peso: number;
 }

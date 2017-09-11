@@ -142,7 +142,7 @@
             <div class="form-group">
               <label class="col-md-4 control-label" for="productocolor">Color</label>
               <div class="col-md-4">
-                <input [(colorPicker)]="color" [style.background]="color" [value]="color" [ngModel]="nuevoProducto?.color" (ngModelChange)="nuevoProducto.color = $event"/>
+                <input [(colorPicker)]="color" (colorPickerChange)="nuevoProducto.color=$event" [style.background]="color" [value]="color" [ngModel]="nuevoProducto?.color" (ngModelChange)="nuevoProducto.color = $event"/>
               </div>
             </div>
             <div class="form-group">
@@ -155,6 +155,18 @@
                 </select>
               </div>
             </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="productodim">Dimensiones:</label>
+                <div class="col-md-4">
+                  <input  type="text" class="form-control input-md" id="productodim" [ngModel]="nuevoProducto?.dimensiones" (ngModelChange)="nuevoProducto.dimensiones = $event"/>
+                </div> 
+              </div>
+            <div class="form-group">
+                  <label class="col-md-4 control-label" for="productopeso">Peso (g):</label> 
+                  <div class="col-md-4">
+                    <input  type="number" class="form-control input-md" id="productopeso" [ngModel]="nuevoProducto?.peso" (ngModelChange)="nuevoProducto.peso = $event"/>
+                  </div>
+                </div>
           </fieldset>
         </div>
         <div class="card-action">
