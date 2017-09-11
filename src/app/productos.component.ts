@@ -15,7 +15,7 @@ export class ProductosComponent implements OnInit {
   selectedProducto: Producto;
   nuevoProducto = {  id: null, name:null,  descripcion: null, price: null,  };
 
-  agregarProducto:boolean=false;
+  mostrarFormulario:boolean=false;
   filtrarProducto:boolean=false;
   
 
@@ -29,24 +29,28 @@ export class ProductosComponent implements OnInit {
   getProductos(): void {
   }
 
+  limpiarFormulario(){
+    this.nuevoProducto = {  id: null, name:null,  descripcion: null, price: null,  };    
+  }
+
   addProducto(){
-    this.agregarProducto=true;
+    this.mostrarFormulario=true;
   }
 
   viewProducto(nuevoProducto){
     this.nuevoProducto=nuevoProducto;
-    this.agregarProducto=true;    
+    this.mostrarFormulario=true;    
   }
 
   createProducto(){
       this.af.database.ref('productos/'+this.nuevoProducto.id).set(this.nuevoProducto);
-      this.agregarProducto=false;
-      this.nuevoProducto = {  id: null, name:null,  descripcion: null, price: null,  };
+      this.mostrarFormulario=false;
+      this.limpiarFormulario();
   }
 
   cancel(){
-    this.nuevoProducto = {  id: null, name:null,  descripcion: null, price: null,  };    
-    this.agregarProducto=false;    
+    this.limpiarFormulario();
+    this.mostrarFormulario=false;    
   }
 
   delete(producto: Producto): void {
