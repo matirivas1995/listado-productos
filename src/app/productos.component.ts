@@ -28,7 +28,7 @@ export class ProductosComponent implements OnInit {
   }
 
   add(id:number, name: string,desc:string,price:number,tipo:string): void {
-    this.productos.push({
+    this.af.database.ref('productos/'+id).set({
       descripcion:desc,
       id:id,
       name: name,
