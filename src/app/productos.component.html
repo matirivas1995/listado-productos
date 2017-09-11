@@ -112,6 +112,12 @@
             <fieldset>
               <legend>Nuevo Producto</legend>
               <div class="form-group">
+                <label class="col-md-4 control-label" for="productoid">ID:</label> 
+                <div class="col-md-4">
+                  <input #productoid type="number" class="form-control input-md" id="productoid"/>
+                </div>
+              </div>
+              <div class="form-group">
                 <label class="col-md-4 control-label" for="productoname">Nombre:</label> 
                 <div class="col-md-4">
                   <input #productoname type="text" class="form-control input-md" id="productoname"/>
@@ -148,14 +154,16 @@
             </fieldset>
           </div>
           <div class="card-action">
-            <button class="btn waves-effect waves-light green fix right large" name="action" (click)="add(productoname.value,
-                                                                                                                productodesc.value,
-                                                                                                                productoprice.value,
-                                                                                                                productotipo.value);
-                                                                                                                productoname.value='';
-                                                                                                                productodesc.value='';
-                                                                                                                productoprice.value='';
-                                                                                                                productotipo.value=''">
+            <button class="btn waves-effect waves-light green fix right large" name="action" (click)="add(productoid.value,
+                                                                                                          productoname.value,
+                                                                                                          productodesc.value,
+                                                                                                          productoprice.value,
+                                                                                                          productotipo.value);
+                                                                                                          productoid.value='';
+                                                                                                          productoname.value='';
+                                                                                                          productodesc.value='';
+                                                                                                          productoprice.value='';
+                                                                                                          productotipo.value=''">
               <i class="material-icons center">send</i>
             </button>
           </div>

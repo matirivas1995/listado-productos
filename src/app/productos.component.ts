@@ -27,10 +27,10 @@ export class ProductosComponent implements OnInit {
   getProductos(): void {
   }
 
-  add(name: string,desc:string,price:number,tipo:string): void {
+  add(id:number, name: string,desc:string,price:number,tipo:string): void {
     this.productos.push({
       descripcion:desc,
-      id:10,
+      id:id,
       name: name,
       price:price,
       tipo:tipo
