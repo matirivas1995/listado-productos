@@ -17,6 +17,7 @@ export class ProductosComponent implements OnInit {
 
   agregarProducto:boolean=false;
   filtrarProducto:boolean=false;
+  
 
   constructor(
     private productoService: ProductoService,
@@ -28,11 +29,19 @@ export class ProductosComponent implements OnInit {
   getProductos(): void {
   }
 
+  addProducto(){
+    this.agregarProducto=true;
+  }
+
+  viewProducto(nuevoProducto){
+    this.nuevoProducto=nuevoProducto;
+    this.agregarProducto=true;    
+  }
 
   createProducto(){
-    this.af.database.ref('productos/'+this.nuevoProducto.id).set(this.nuevoProducto);
-    this.nuevoProducto = {  id: null, name:null,  descripcion: null, price: null,  };
-    
+      this.af.database.ref('productos/'+this.nuevoProducto.id).set(this.nuevoProducto);
+      this.agregarProducto=false;
+      this.nuevoProducto = {  id: null, name:null,  descripcion: null, price: null,  };
   }
 
   delete(producto: Producto): void {
