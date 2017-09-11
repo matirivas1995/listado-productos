@@ -13,6 +13,7 @@ import { ProductoService }         from './producto.service';
 export class ProductosComponent implements OnInit {
   productos: FirebaseListObservable<any[]>;
   selectedProducto: Producto;
+  nuevoProducto = {  id: null, name:null,  descripcion: null, price: null,  };
 
   agregarProducto:boolean=false;
   filtrarProducto:boolean=false;
@@ -27,14 +28,11 @@ export class ProductosComponent implements OnInit {
   getProductos(): void {
   }
 
-  add(id:number, name: string,desc:string,price:number,tipo:string): void {
-    this.af.database.ref('productos/'+id).set({
-      descripcion:desc,
-      id:id,
-      name: name,
-      price:price,
-      tipo:tipo
-    })
+
+  createProducto(){
+    this.af.database.ref('productos/'+this.nuevoProducto.id).set(this.nuevoProducto);
+    this.nuevoProducto = {  id: null, name:null,  descripcion: null, price: null,  };
+    
   }
 
   delete(producto: Producto): void {

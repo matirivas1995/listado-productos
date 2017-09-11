@@ -106,7 +106,7 @@
     <br><br><br><br>
 
     <div class="row" *ngIf="agregarProducto">
-      <form class="col s12 m6 form-horizontal">
+      <div class="col s12 m6 form-horizontal">
         <div class="card blue-grey darken-1">
           <div class="card-content white-text">
             <fieldset>
@@ -114,37 +114,37 @@
               <div class="form-group">
                 <label class="col-md-4 control-label" for="productoid">ID:</label> 
                 <div class="col-md-4">
-                  <input #productoid type="number" class="form-control input-md" id="productoid"/>
+                  <input  type="number" class="form-control input-md" id="productoid" [ngModel]="nuevoProducto?.id" (ngModelChange)="nuevoProducto.id = $event"/>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-md-4 control-label" for="productoname">Nombre:</label> 
                 <div class="col-md-4">
-                  <input #productoname type="text" class="form-control input-md" id="productoname"/>
+                  <input  type="text" class="form-control input-md" id="productoname" [ngModel]="nuevoProducto?.name" (ngModelChange)="nuevoProducto.name = $event"/>
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-md-4 control-label" for="productodesc">Descripcion:</label>
                 <div class="col-md-4">
-                  <input #productodesc type="text" class="form-control input-md" id="productodesc"/>
+                  <input  type="text" class="form-control input-md" id="productodesc" [ngModel]="nuevoProducto?.descripcion" (ngModelChange)="nuevoProducto.descripcion = $event"/>
                 </div> 
               </div>
               <div class="form-group">
                 <label class="col-md-4 control-label" for="productoprice">Precio:</label>
                 <div class="col-md-4">
-                  <input #productoprice type="number" class="form-control input-md" id="productoprice"/>
+                  <input  type="number" class="form-control input-md" id="productoprice" [ngModel]="nuevoProducto?.price" (ngModelChange)="nuevoProducto.price = $event"/>
                 </div>
               </div>
               <div class="form-group">
                   <label class="col-md-4 control-label" for="filebutton">Foto</label>
                   <div class="col-md-4">
-                    <input id="filebutton" name="filebutton" class="input-file" type="file">
+                    <input id="filebutton" name="filebutton" class="input-file" type="file" >
                   </div>
                 </div>
               <div class="form-group">
                 <label class="col-md-4 control-label" for="tipo_producto">Tipo:</label>
                 <div class="col-md-4">
-                  <select #productotipo id="tipo_producto" name="tipo_producto" class="form-control validate">
+                  <select  id="tipo_producto" name="tipo_producto" class="form-control validate">
                     <option value="Casa">Casa</option>
                     <option value="Automovil">Automovil</option>
                     <option value="Comida">Comida</option>
@@ -154,21 +154,12 @@
             </fieldset>
           </div>
           <div class="card-action">
-            <button class="btn waves-effect waves-light green fix right large" name="action" (click)="add(productoid.value,
-                                                                                                          productoname.value,
-                                                                                                          productodesc.value,
-                                                                                                          productoprice.value,
-                                                                                                          productotipo.value);
-                                                                                                          productoid.value='';
-                                                                                                          productoname.value='';
-                                                                                                          productodesc.value='';
-                                                                                                          productoprice.value='';
-                                                                                                          productotipo.value=''">
+            <button class="btn waves-effect waves-light green fix right large" name="action" (click)="createProducto()">
               <i class="material-icons center">send</i>
             </button>
           </div>
           </div>
-        </form>
+        </div>
       </div>    
   </div>
 </div>
