@@ -92,6 +92,7 @@
           <td >{{producto.price}}</td>
           <a class="waves-effect waves-light btn red" *ngIf="producto === selectedProducto" (click)="delete(producto); $event.stopPropagation()">x</a>
           <a class="waves-effect waves-light btn cyan" *ngIf="producto === selectedProducto" (click)="viewProducto(producto)"><i class="material-icons" (click)="viewProducto(producto)">create</i></a>
+          <a class="waves-effect waves-light btn green" *ngIf="producto === selectedProducto" (click)="gotoDetail()"><i class="material-icons" (click)="gotoDetail()">details</i></a>
         </tr>
       </tbody>
     </table>

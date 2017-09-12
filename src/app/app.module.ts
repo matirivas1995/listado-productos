@@ -25,6 +25,8 @@ import { NoLoginGuard } from './no-login.guard';
 
 import {ColorPickerModule} from 'angular4-color-picker';
 
+import { FirebaseService }          from './services/firebase.service'
+
 export const firebaseConfig = {
   apiKey: "AIzaSyBTGY08NdYQq6BuT2JgjuYo4QTnAYm8IJ0",
   authDomain: "productos-angular.firebaseapp.com",
@@ -52,7 +54,7 @@ export const firebaseConfig = {
     ProductoSearchComponent,
     LoginComponent
   ],
-  providers: [ ProductoService, LoginGuard, NoLoginGuard ],
+  providers: [ ProductoService, LoginGuard, NoLoginGuard, FirebaseService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

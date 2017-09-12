@@ -1,10 +1,8 @@
-import 'rxjs/add/operator/switchMap';
 import { Component, OnInit }        from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Location }                 from '@angular/common';
+import { FirebaseService }          from './services/firebase.service'
+import { Router,ActivatedRoute, Params } from '@angular/router';
 
-import { Producto }        from './producto';
-import { ProductoService } from './producto.service';
+
 
 @Component({
   selector: 'producto-detail',
@@ -12,26 +10,23 @@ import { ProductoService } from './producto.service';
   styleUrls: [ './producto-detail.component.css' ]
 })
 export class ProductoDetailComponent implements OnInit {
-  producto: Producto;
-
+  id:any;
+  producto:any;
+  
   constructor(
-    private productoService: ProductoService,
+    private firebaseService:FirebaseService,
+    private router:Router,
     private route: ActivatedRoute,
-    private location: Location
-  ) {}
+  ) {  }
 
   ngOnInit(): void {
-    this.route.paramMap
-      .switchMap((params: ParamMap) => this.productoService.getProducto(+params.get('id')))
-      .subscribe(producto => this.producto = producto);
+    this.id = this.route.snapshot.params['id'];
+
+    this.firebaseService.getProductoDetails(this.id).subscribe(producto => {
+      this.producto = producto;
+      console.log(producto);
+      
+    });
   }
 
-  save(): void {
-    this.productoService.update(this.producto)
-      .then(() => this.goBack());
-  }
-
-  goBack(): void {
-    this.location.back();
-  }
 }
