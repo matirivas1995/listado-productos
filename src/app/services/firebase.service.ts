@@ -23,21 +23,21 @@ export class FirebaseService {
   }
 
   addProducto(producto){
-    console.log("Paso1");
     let storageRef = firebase.storage().ref();
-    console.log("Paso2");
     for(let selectedFile of [(<HTMLInputElement>document.getElementById('productofoto')).files[0]]){
-      console.log(selectedFile.name);
-      console.log("Paso3");
-      let path=`/${this.folder}/${selectedFile.name}`;
-      let iRef = storageRef.child(path);
-      console.log("Paso4");
-      iRef.put(selectedFile).then((snapshot) => {
-        producto.foto = selectedFile.name;
-        producto.path = path;
-        return this.af.database.ref('productos/'+producto.id).set(producto);    
-        //return this.productos.push(producto);
-      });
+      if(selectedFile)
+      {
+        let path=`/${this.folder}/${selectedFile.name}`;
+        let iRef = storageRef.child(path);
+        iRef.put(selectedFile).then((snapshot) => {
+          producto.foto = selectedFile.name;
+          producto.path = path;
+          return this.af.database.ref('productos/'+producto.id).set(producto);    
+        });
+      }
+      else{
+        return this.af.database.ref('productos/'+producto.id).set(producto);            
+      }
     }
   }
 }
