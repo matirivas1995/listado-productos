@@ -13,7 +13,7 @@ import { ProductoService }         from './producto.service';
 export class ProductosComponent implements OnInit {
   productos: FirebaseListObservable<any[]>;
   selectedProducto: Producto;
-  nuevoProducto = {  id: null, name:null,  descripcion: null, price: null, foto:null, tipo: null, cantidad:null, color: null, dimensiones:null, peso:null, caracteristicas:null  };
+  nuevoProducto = {  id: null, name:null,  descripcion: null, price: null, foto:null, tipo: null, cantidad:null, color: '#FFFFFF', dimensiones:null, peso:null, caracteristicas:null  };
 
   mostrarTabla:boolean=true;
   mostrarFormulario:boolean=false;
