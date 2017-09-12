@@ -140,33 +140,46 @@
               </div>
             </div>
             <div class="form-group">
-              <label class="col-md-4 control-label" for="productocolor">Color</label>
-              <div class="col-md-4">
-                <input [(colorPicker)]="color" (colorPickerChange)="nuevoProducto.color=$event" [style.background]="color" [value]="color" [ngModel]="nuevoProducto?.color" (ngModelChange)="nuevoProducto.color = $event"/>
-              </div>
-            </div>
-            <div class="form-group">
               <label class="col-md-4 control-label" for="tipo_producto">Tipo:</label>
               <div class="col-md-4">
                 <select  id="tipo_producto" name="tipo_producto" class="form-control validate" [ngModel]="nuevoProducto?.tipo" (ngModelChange)="nuevoProducto.tipo = $event">
                   <option value="Casa">Casa</option>
                   <option value="Automovil">Automovil</option>
                   <option value="Comida">Comida</option>
+                  <option value="Vestimenta">Vestimenta</option>
                 </select>
               </div>
             </div>
             <div class="form-group">
-                <label class="col-md-4 control-label" for="productodim">Dimensiones:</label>
-                <div class="col-md-4">
-                  <input  type="text" class="form-control input-md" id="productodim" [ngModel]="nuevoProducto?.dimensiones" (ngModelChange)="nuevoProducto.dimensiones = $event"/>
-                </div> 
+              <label class="col-md-4 control-label" for="productocant">Cantidad:</label> 
+              <div class="col-md-4">
+                <input  type="number" class="form-control input-md" id="productocant" [ngModel]="nuevoProducto?.cantidad" (ngModelChange)="nuevoProducto.cantidad = $event"/>
               </div>
+            </div>
             <div class="form-group">
-                  <label class="col-md-4 control-label" for="productopeso">Peso (g):</label> 
-                  <div class="col-md-4">
-                    <input  type="number" class="form-control input-md" id="productopeso" [ngModel]="nuevoProducto?.peso" (ngModelChange)="nuevoProducto.peso = $event"/>
-                  </div>
-                </div>
+              <label class="col-md-4 control-label" for="productocolor">Color</label>
+              <div class="col-md-4">
+                <input [(colorPicker)]="color" (colorPickerChange)="nuevoProducto.color=$event" [style.background]="color" [value]="color" [ngModel]="nuevoProducto?.color" (ngModelChange)="nuevoProducto.color = $event"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="productodim">Dimensiones:</label>
+              <div class="col-md-4">
+                <input  type="text" class="form-control input-md" id="productodim" [ngModel]="nuevoProducto?.dimensiones" (ngModelChange)="nuevoProducto.dimensiones = $event"/>
+              </div> 
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="productopeso">Peso:</label> 
+              <div class="col-md-4">
+                <input  type="text" class="form-control input-md" id="productopeso" [ngModel]="nuevoProducto?.peso" (ngModelChange)="nuevoProducto.peso = $event"/>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="productocaract">Caracteristicas:</label> 
+              <div class="col-md-4">
+                <input  type="text" class="form-control input-md" id="productocaract" [ngModel]="nuevoProducto?.caracteristicas" (ngModelChange)="nuevoProducto.caracteristicas = $event"/>
+              </div>
+            </div>
           </fieldset>
         </div>
         <div class="card-action">
