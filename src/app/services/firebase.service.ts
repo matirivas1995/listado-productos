@@ -1,20 +1,44 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import * as firebase from 'firebase';
 
 @Injectable()
 export class FirebaseService {
   productos:FirebaseListObservable<any[]>;
   producto:FirebaseObjectObservable<any[]>;
-  constructor(private af: AngularFireDatabase) { }
+  folder:any;
+
+  constructor(private af: AngularFireDatabase) {
+    this.folder = 'productoimages';
+   }
 
   getProductos(){
     this.productos = this.af.list('/productos/') as FirebaseListObservable<Producto>
-    return this.productos
+    return this.productos;
   }
 
   getProductoDetails(id){
     this.producto = this.af.object('/productos/'+id) as FirebaseObjectObservable<Producto>
-    return this.producto
+    return this.producto;
+  }
+
+  addProducto(producto){
+    let storageRef = firebase.storage().ref();
+    for(let selectedFile of [(<HTMLInputElement>document.getElementById('productofoto')).files[0]]){
+      if(selectedFile)
+      {
+        let path=`/${this.folder}/${selectedFile.name}`;
+        let iRef = storageRef.child(path);
+        iRef.put(selectedFile).then((snapshot) => {
+          producto.foto = selectedFile.name;
+          producto.path = path;
+          return this.af.database.ref('productos/'+producto.id).set(producto);    
+        });
+      }
+      else{
+        return this.af.database.ref('productos/'+producto.id).set(producto);            
+      }
+    }
   }
 }
 

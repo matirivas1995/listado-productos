@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router }            from '@angular/router';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database'
-
+import { FirebaseService }          from './services/firebase.service'
 import { Producto }                from './producto';
 import { ProductoService }         from './producto.service';
+import * as firebase from 'firebase';
+
 
 @Component({
   selector: 'my-productos',
@@ -23,12 +25,12 @@ export class ProductosComponent implements OnInit {
   constructor(
     private productoService: ProductoService,
     private router: Router,
-    public af : AngularFireDatabase ) { 
+    public af : AngularFireDatabase,
+    private firebaseService:FirebaseService, ) { 
       this.productos=af.list('/productos');
     }
 
-  getProductos(): void {
-  }
+  getProductos(): void {}
 
   limpiarFormulario(){
     this.nuevoProducto = {  id: null, name:null,  descripcion: null, price: null, foto:null, tipo: null, cantidad:null, color: null, dimensiones:null, peso:null, caracteristicas:null  };
@@ -47,13 +49,11 @@ export class ProductosComponent implements OnInit {
   }
 
   createProducto(){
-      console.log(this.nuevoProducto.color)
-      console.log(this.nuevoProducto.name)
-      console.log(this.nuevoProducto.id)
-      this.af.database.ref('productos/'+this.nuevoProducto.id).set(this.nuevoProducto);
-      this.mostrarFormulario=false;
-      this.limpiarFormulario();
-      this.mostrarTabla=true;
+    //this.af.database.ref('productos/'+this.nuevoProducto.id).set(this.nuevoProducto);
+    this.firebaseService.addProducto(this.nuevoProducto);
+    this.mostrarFormulario=false;
+    this.limpiarFormulario();
+    this.mostrarTabla=true;
   }
 
   cancel(){
@@ -77,6 +77,7 @@ export class ProductosComponent implements OnInit {
   gotoDetail(): void {
     this.router.navigate(['/detail', this.selectedProducto.id]);
   }
+
   filter(val: string): void {
     this.af.list('/productos/tipos',{
       query: {

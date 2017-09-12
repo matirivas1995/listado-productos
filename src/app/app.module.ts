@@ -26,6 +26,8 @@ import { NoLoginGuard } from './no-login.guard';
 import {ColorPickerModule} from 'angular4-color-picker';
 
 import { FirebaseService }          from './services/firebase.service'
+import * as firebase from 'firebase';
+
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBTGY08NdYQq6BuT2JgjuYo4QTnAYm8IJ0",
@@ -35,6 +37,8 @@ export const firebaseConfig = {
   storageBucket: "productos-angular.appspot.com",
   messagingSenderId: "837986261668"
   }
+
+firebase.initializeApp(firebaseConfig);
 
 @NgModule({
   imports: [
