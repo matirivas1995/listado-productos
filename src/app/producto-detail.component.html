@@ -1,30 +1,86 @@
-<div *ngIf="producto">
-  <h2>Detalles de {{producto.name}}:</h2>
-  <div>
-    <label>id: </label>{{producto.id}}</div>
-  <div>
-    <label>name: </label>
-    <input [(ngModel)]="producto.name" placeholder="name" />
-    </div>
-  <div>
-    <label>descripcion: </label>
-    <input [(ngModel)]="producto.descripcion" placeholder="descripcion" /></div>
-  <div>
-    <label>precio: </label>
-    <input [(ngModel)]="producto.precio" placeholder="precio" /></div>
-  <div>
-    <label>foto: </label>
-    <input [(ngModel)]="producto.foto" placeholder="foto" />
-    <img src={{producto.foto}} alt="labatamanta">
-  <div>
-    <label>color: </label>
-    <input [(ngModel)]="producto.color" placeholder="color" />
-  <div>
-    <label>tipo: </label>
-    <input [(ngModel)]="producto.tipo" placeholder="tipo" /></div>
-  <div>
-    <label>cantidad: </label>
-    <input [(ngModel)]="producto.cantidad" placeholder="cantidad" /></div>
-  <button (click)="goBack()">Atras</button>
-  <button (click)="save()">Guardar</button>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>eCommerce Product Detail</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+
+  </head>
+
+  <body>
+	
+	<div class="container">
+	   
+		<div class="card">
+			<div class="container-fliud">
+				<div class="wrapper row">
+				    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- e commers -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-9155049400353686"
+     data-ad-slot="5554792257"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+				    
+					<div class="preview col-md-6">
+						
+						<div class="preview-pic tab-content">
+						  <div class="tab-pane active" id="pic-1"><img src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" /></div>
+						  <div class="tab-pane" id="pic-2"><img src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" /></div>
+						  <div class="tab-pane" id="pic-3"><img src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" /></div>
+						  <div class="tab-pane" id="pic-4"><img src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" /></div>
+						  <div class="tab-pane" id="pic-5"><img src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" /></div>
+						</div>
+						<ul class="preview-thumbnail nav nav-tabs">
+						  <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" /></a></li>
+						  <li><a data-target="#pic-2" data-toggle="tab"><img src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" /></a></li>
+						  <li><a data-target="#pic-3" data-toggle="tab"><img src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" /></a></li>
+						  <li><a data-target="#pic-4" data-toggle="tab"><img src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" /></a></li>
+						  <li><a data-target="#pic-5" data-toggle="tab"><img src="http://saveabandonedbabies.org/wp-content/uploads/2015/08/default.png" /></a></li>
+						</ul>
+						
+					</div>
+					<div class="details col-md-6">
+						<h3 class="product-title"> {{producto.name}} </h3>
+						
+						<p class="product-description">{{producto.descripcion}}</p>
+						<h4 class="price">precio actual: <span>Gs.{{producto.price}}</span></h4>
+						<h5 class="sizes">sizes:
+							<span class="size" data-toggle="tooltip" title="small">s</span>
+							<span class="size" data-toggle="tooltip" title="medium">m</span>
+							<span class="size" data-toggle="tooltip" title="large">l</span>
+							<span class="size" data-toggle="tooltip" title="xtra large">xl</span>
+						</h5>
+						<h5 class="colors">colors:
+							<span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
+							<span class="color green"></span>
+							<span class="color blue"></span>
+						</h5>
+						<div class="action">
+							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
+							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-format="fluid"
+     data-ad-layout="in-article"
+     data-ad-client="ca-pub-9155049400353686"
+     data-ad-slot="7825539155"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  </body>
+</html>
