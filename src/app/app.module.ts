@@ -28,6 +28,7 @@ import { FirebaseService }          from './services/firebase.service'
 import { CartService }          from './services/cart.service'
 
 import * as firebase from 'firebase';
+import { PortalComponent } from './portal/portal.component';
 
 
 
@@ -58,7 +59,8 @@ firebase.initializeApp(firebaseConfig);
     ProductoDetailComponent,
     ProductosComponent,
     LoginComponent,
-    TopbarComponent
+    TopbarComponent,
+    PortalComponent
   ],
   providers: [ LoginGuard, NoLoginGuard, FirebaseService ,CartService],
   bootstrap: [ AppComponent ]
