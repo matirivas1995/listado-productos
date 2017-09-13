@@ -54,7 +54,8 @@ firebase.initializeApp(firebaseConfig);
     ProductosComponent,
     LoginComponent,
     TopbarComponent,
-    CartPopupComponent
+    CartPopupComponent,
+    PortalComponent
   ],
   providers: [ LoginGuard, NoLoginGuard, FirebaseService ,CartService],
   bootstrap: [ AppComponent ]
