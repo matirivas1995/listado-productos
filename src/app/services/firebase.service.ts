@@ -13,12 +13,12 @@ export class FirebaseService {
    }
 
   getProductos(){
-    this.productos = this.af.list('/productos/') as FirebaseListObservable<Producto>
+    this.productos = this.af.list('/productos/') as FirebaseListObservable<Producto[]>
     return this.productos;
   }
 
   getProductoDetails(id){
-    this.producto = this.af.object('/productos/'+id) as FirebaseObjectObservable<Producto>
+    this.producto = this.af.object('/productos/'+id) as FirebaseObjectObservable<Producto[]>
     return this.producto;
   }
 

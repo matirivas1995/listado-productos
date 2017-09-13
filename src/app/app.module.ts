@@ -21,6 +21,7 @@ import { FirebaseService }          from './services/firebase.service';
 import { CartService }          from './services/cart.service';
 
 import * as firebase from 'firebase';
+import { PortalComponent } from './portal/portal.component';
 
 import { CartBaseComponent } from './cart-base.component';
 import { CartPopupComponent } from './cart-popup.component';
