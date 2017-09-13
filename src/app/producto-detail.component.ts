@@ -29,8 +29,9 @@ export class ProductoDetailComponent implements OnInit {
 
     this.firebaseService.getProductoDetails(this.id).subscribe(producto => {
       this.producto = producto;
-      console.log(producto);
+      console.log(this.producto.path);
       let storageRef= firebase.storage().ref();
+      console.log(storageRef);      
       let spaceRef= storageRef.child(this.producto.path);
       storageRef.child(this.producto.path).getDownloadURL().then((url) => {
         this.imageUrl = url;

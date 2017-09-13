@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService }          from '../services/firebase.service'
+import { FirebaseService }          from '../services/firebase.service';
+import * as firebase from 'firebase';
 
 
 @Component({
@@ -13,9 +14,20 @@ export class PortalComponent implements OnInit {
 
   ngOnInit() {
     this.firebaseService.getProductos().subscribe(productos => {
-      console.log(productos);
       this.productos = productos;
-    })
+      this.productos.forEach(element => {
+        let storageRef= firebase.storage().ref();
+        let spaceRef= storageRef.child(element.path);        
+        storageRef.child(element.path).getDownloadURL().then((url) => {
+          element.url = url;
+          console.log(element);
+
+        }).catch((error) => {
+          console.log(error);
+        });
+      });
+    });
   }
+
 
 }
