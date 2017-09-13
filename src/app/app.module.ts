@@ -18,6 +18,7 @@ import { ProductosComponent }      from './productos.component';
 import { ProductoDetailComponent }  from './producto-detail.component';
 import { ProductoService }          from './producto.service';
 import { ProductoSearchComponent }  from './producto-search.component';
+import { TopbarComponent }         from './topbar.component';
 
 import { LoginComponent } from './login.component';
 import { LoginGuard } from './login.guard';
@@ -26,7 +27,12 @@ import { NoLoginGuard } from './no-login.guard';
 import {ColorPickerModule} from 'angular4-color-picker';
 
 import { FirebaseService }          from './services/firebase.service'
+
+import { CartService }          from './services/cart.service'
+
 import * as firebase from 'firebase';
+
+
 
 
 export const firebaseConfig = {
@@ -56,9 +62,10 @@ firebase.initializeApp(firebaseConfig);
     ProductoDetailComponent,
     ProductosComponent,
     ProductoSearchComponent,
-    LoginComponent
+    LoginComponent,
+    TopbarComponent
   ],
-  providers: [ ProductoService, LoginGuard, NoLoginGuard, FirebaseService ],
+  providers: [ ProductoService, LoginGuard, NoLoginGuard, FirebaseService ,CartService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

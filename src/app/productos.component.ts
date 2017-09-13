@@ -4,6 +4,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { FirebaseService }          from './services/firebase.service'
 import { Producto }                from './producto';
 import { ProductoService }         from './producto.service';
+import { CartService }         from './services/cart.service'
 import * as firebase from 'firebase';
 
 
@@ -15,18 +16,20 @@ import * as firebase from 'firebase';
 export class ProductosComponent implements OnInit {
   productos: FirebaseListObservable<any[]>;
   selectedProducto: Producto;
+  cart:Producto[];
   nuevoProducto = {  id: null, name:null,  descripcion: null, price: null, foto:null, tipo: null, cantidad:null, color: null, dimensiones:null, peso:null, caracteristicas:null  };
 
   mostrarTabla:boolean=true;
   mostrarFormulario:boolean=false;
   filtrarProducto:boolean=false;
-  
+  quantity: number = 1;
 
   constructor(
     private productoService: ProductoService,
     private router: Router,
     public af : AngularFireDatabase,
-    private firebaseService:FirebaseService, ) { 
+    private firebaseService:FirebaseService, 
+    private cartService:CartService,) { 
       this.productos=af.list('/productos');
     }
 
@@ -76,6 +79,10 @@ export class ProductosComponent implements OnInit {
 
   gotoDetail(): void {
     this.router.navigate(['/detail', this.selectedProducto.id]);
+  }
+
+  addCart(producto: Producto): void {
+    if(this.quantity) this.cartService.addToCart({producto,quantity:this.quantity})
   }
 
   filter(val: string): void {
