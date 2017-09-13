@@ -10,14 +10,21 @@ import { CartService } from "./services/cart.service";
             <div class="nav-wrapper">
                 <div class="container">
                     <a class="brand-logo" href="#" >MarketPlace</a>
-                    <ul id="nav-mobile" class=" right right hide-on-med-and-down">
+                    <ul id="nav-mobile" class=" right right hide-on-med-and-down" (click)="toggleCartPopup($event)">
                         <li><i class="material-icons">shopping_cart</i></li>
                         <li><span *ngIf="cart_num">( {{cart_num}} )</span></li>
                     </ul>
                 </div>
+                <div class="card-floating z-depth-5 ">
+                <cart-popup></cart-popup>
+                </div>
+               
             </div>
+            
         </nav>
+        
     </div>
+    
 `
 })
 export class TopbarComponent implements OnInit {

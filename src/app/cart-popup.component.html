@@ -1,0 +1,51 @@
+<div class="pop-cart-item" *ngFor="let cart of cartList;let i = index">
+
+    <div class="pop-cart-item-details">
+        <h1 class="pop-cart-item-title">
+            <a href=""> {{ cart.producto.name }} <span class="pop-cart-item-quantity">× {{ cart.quantity }}</span></a>
+        </h1>
+        <span class="black-text">
+            {{ cart.producto.price | currency }}
+        </span>
+    </div>
+
+    <div class="pop-cart-remove-wrapper">
+        <span (click)="removeFromCart(i)" class="cart-remove black-text">X</span>
+    </div>
+
+</div>
+
+
+
+<div *ngIf="cartList.length > 0">
+
+    <div class="cart-total">
+        <div class="cart-total-item">
+        <span class="cart-total-label">
+            Total
+        </span>
+            <span class="cart-total-value">
+            {{  totalPrice | currency }}
+        </span>
+        </div>
+    </div>
+
+
+    <footer class="quick-cart-footer">
+        <div class="quick-cart-footer-cell">
+            <div class="waves-effect waves-light btn-large red">Checkout</div>
+        </div>
+    </footer>
+
+</div>
+
+
+
+<div *ngIf="cartList.length == 0">
+
+
+    <p class="black-text center">Your cart is empty</p>
+
+</div>
+
+
