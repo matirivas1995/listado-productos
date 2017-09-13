@@ -2,16 +2,9 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
-
-import { AngularFireDatabaseModule } from 'angularfire2/database'
-import { AngularFireModule } from 'angularfire2'
-
-
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireModule } from 'angularfire2';
 import { AppRoutingModule } from './app-routing.module';
-
-// Imports for loading & configuring the in-memory web api
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-
 import { AppComponent }         from './app.component';
 import { ProductosComponent }      from './productos.component';
 import { ProductoDetailComponent }  from './producto-detail.component';
@@ -23,13 +16,14 @@ import { NoLoginGuard } from './no-login.guard';
 
 import {ColorPickerModule} from 'angular4-color-picker';
 
-import { FirebaseService }          from './services/firebase.service'
+import { FirebaseService }          from './services/firebase.service';
 
-import { CartService }          from './services/cart.service'
+import { CartService }          from './services/cart.service';
 
 import * as firebase from 'firebase';
 
-
+import { CartBaseComponent } from './cart-base.component';
+import { CartPopupComponent } from './cart-popup.component';
 
 
 export const firebaseConfig = {
@@ -58,7 +52,8 @@ firebase.initializeApp(firebaseConfig);
     ProductoDetailComponent,
     ProductosComponent,
     LoginComponent,
-    TopbarComponent
+    TopbarComponent,
+    CartPopupComponent
   ],
   providers: [ LoginGuard, NoLoginGuard, FirebaseService ,CartService],
   bootstrap: [ AppComponent ]
