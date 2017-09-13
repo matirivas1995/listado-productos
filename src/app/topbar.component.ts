@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from "./services/cart.service";
+import { Router }             from '@angular/router';
 
 
 @Component({
@@ -8,17 +9,28 @@ import { CartService } from "./services/cart.service";
     <div>  
         <nav>
             <div class="nav-wrapper">
+
                 <div class="container">
                     <a class="brand-logo" href="#" >MarketPlace</a>
-                    <ul id="nav-mobile" class=" right right hide-on-med-and-down" (click)="toggleCartPopup($event)">
+
+                    <div *ngIf="sesionIniciada()" class="right">            
+                    <button type="button" class="btn btn-default btn-sm" (click)="logout()">
+                    <span class="glyphicon glyphicon-log-out"></span></button>
+                   </div>  
+
+                        
+                    <ul *ngIf="sesionIniciada()" id="nav-mobile" class=" right right hide-on-med-and-down" (click)="toggleCartPopup($event)">
                         <li><i class="material-icons">shopping_cart</i></li>
                         <li><span *ngIf="cart_num">( {{cart_num}} )</span></li>
                     </ul>
-                </div>
+                   
+                </div>   
+
+                
                 <div class="card-floating z-depth-5 ">
-                <cart-popup></cart-popup>
+                    <cart-popup></cart-popup>
                 </div>
-               
+
             </div>
             
         </nav>
@@ -31,7 +43,8 @@ export class TopbarComponent implements OnInit {
     public collapse: boolean = false;
     public cart_num:number;
     constructor(
-        private cartService: CartService
+        private cartService: CartService,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -45,4 +58,18 @@ export class TopbarComponent implements OnInit {
         event.stopPropagation();
         this.cartService.toggleCart()
     }
+    sesionIniciada():boolean{
+        if(localStorage.getItem('usuario') === null){
+          return false;
+        }
+        else{
+          return true;
+        }
+      }
+    
+      logout(){
+        localStorage.removeItem('usuario');
+        this.router.navigate(['']);
+      }
+
 }

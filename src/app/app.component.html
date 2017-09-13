@@ -4,10 +4,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <top-bar></top-bar>
     <div class="container">
-        <div *ngIf="sesionIniciada()">            
-            <button type="button" class="btn btn-default btn-sm" (click)="logout()">
-            <span class="glyphicon glyphicon-log-out"></span> Log out</button>
-        </div>
         <router-outlet></router-outlet>
     </div>
 
