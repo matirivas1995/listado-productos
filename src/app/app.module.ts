@@ -11,13 +11,10 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
 
 import { AppComponent }         from './app.component';
 import { ProductosComponent }      from './productos.component';
 import { ProductoDetailComponent }  from './producto-detail.component';
-import { ProductoService }          from './producto.service';
-import { ProductoSearchComponent }  from './producto-search.component';
 import { TopbarComponent }         from './topbar.component';
 
 import { LoginComponent } from './login.component';
@@ -51,7 +48,6 @@ firebase.initializeApp(firebaseConfig);
     BrowserModule,
     FormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig,'listado-prodctos'),
     AngularFireDatabaseModule,
@@ -61,11 +57,10 @@ firebase.initializeApp(firebaseConfig);
     AppComponent,
     ProductoDetailComponent,
     ProductosComponent,
-    ProductoSearchComponent,
     LoginComponent,
     TopbarComponent
   ],
-  providers: [ ProductoService, LoginGuard, NoLoginGuard, FirebaseService ,CartService],
+  providers: [ LoginGuard, NoLoginGuard, FirebaseService ,CartService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

@@ -3,7 +3,6 @@ import { Router }            from '@angular/router';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database'
 import { FirebaseService }          from './services/firebase.service'
 import { Producto }                from './producto';
-import { ProductoService }         from './producto.service';
 import { CartService }         from './services/cart.service'
 import * as firebase from 'firebase';
 
@@ -26,7 +25,6 @@ export class ProductosComponent implements OnInit {
   quantity: number = 1;
 
   constructor(
-    private productoService: ProductoService,
     private router: Router,
     public af : AngularFireDatabase,
     private firebaseService:FirebaseService, 
