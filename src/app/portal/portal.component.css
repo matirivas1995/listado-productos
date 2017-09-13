@@ -79,4 +79,10 @@
     font-size: 1.14286em;
     color: green;
     font-family: Playfair Display;
+    font-weight: bold;
+  }
+  .product-cantidad {
+    font-size: 1.14286em;
+    color: red;
+    font-family: Playfair Display;
   }
