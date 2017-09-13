@@ -27,6 +27,7 @@ export class FirebaseService {
     for(let selectedFile of [(<HTMLInputElement>document.getElementById('productofoto')).files[0]]){
       if(selectedFile)
       {
+        console.log("Se asigno imagen");        
         let path=`/${this.folder}/${selectedFile.name}`;
         let iRef = storageRef.child(path);
         iRef.put(selectedFile).then((snapshot) => {
@@ -36,6 +37,17 @@ export class FirebaseService {
         });
       }
       else{
+        console.log("No se asigno imagen");
+        if(!producto.foto)
+        {
+          console.log("No tenia luego");
+          producto.foto = "default_image.png";
+          producto.path = "/productoimages/default_image.png";
+          console.log("Se le asigno "+producto.foto);
+        }
+        else{
+          console.log(producto.foto);
+        }
         return this.af.database.ref('productos/'+producto.id).set(producto);            
       }
     }
