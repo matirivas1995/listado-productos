@@ -2,7 +2,8 @@ import { Component, OnInit }        from '@angular/core';
 import { FirebaseService }          from './services/firebase.service'
 import { Router,ActivatedRoute, Params } from '@angular/router';
 import * as firebase from 'firebase';
-
+import { Producto } from './producto'
+import { CartService} from './services/cart.service'
 
 
 @Component({
@@ -14,11 +15,13 @@ export class ProductoDetailComponent implements OnInit {
   id:any;
   producto:any;
   imageUrl:any;
+  quantity: number = 1;
   
   constructor(
     private firebaseService:FirebaseService,
     private router:Router,
     private route: ActivatedRoute,
+    private cartService: CartService
   ) {  }
 
   ngOnInit(): void {
@@ -35,6 +38,10 @@ export class ProductoDetailComponent implements OnInit {
         console.log(error);
       });
     });
+  }
+
+  addCart(producto: Producto): void {
+    if(this.quantity) this.cartService.addToCart({producto,quantity:this.quantity})
   }
 
 }

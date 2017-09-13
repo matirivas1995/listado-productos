@@ -48,8 +48,7 @@
 						<h5 class="sizes">caracteristicas: <span>{{producto.caracteristicas}}</span></h5>
 						<h5 class="colors">color: <span class="color" [ngStyle]="{'background': producto.color}"></span></h5>
 						<div class="action">
-							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
-							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
+							<button class="waves-effect waves-light btn-large orange" (click)="addCart(producto)">+ add to cart</button>
 						</div>
 					</div>
 				</div>
