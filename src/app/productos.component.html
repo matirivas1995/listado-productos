@@ -89,7 +89,7 @@
           <td >{{producto.id}}</td>
           <td >{{producto.name}}</td>
           <td >{{producto.descripcion}}</td>
-          <td >{{producto.price}}</td>
+          <td class="right">{{ producto.price | currency }}</td>
           <a class="waves-effect waves-light btn red" *ngIf="producto === selectedProducto" (click)="delete(producto); $event.stopPropagation()"><i class="material-icons" (click)="delete(producto); $event.stopPropagation()">delete</i></a>
           <a class="waves-effect waves-light btn cyan" *ngIf="producto === selectedProducto" (click)="viewProducto(producto)"><i class="material-icons" (click)="viewProducto(producto)">create</i></a>
           <a class="waves-effect waves-light btn green" *ngIf="producto === selectedProducto" (click)="gotoDetail()"><i class="material-icons" (click)="gotoDetail()">details</i></a>
