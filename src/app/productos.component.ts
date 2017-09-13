@@ -16,8 +16,12 @@ import * as firebase from 'firebase';
 export class ProductosComponent implements OnInit {
   productos: FirebaseListObservable<any[]>;
   selectedProducto: Producto;
+<<<<<<< HEAD
   cart:Producto[];
   nuevoProducto = {  id: null, name:null,  descripcion: null, price: null, foto:null, tipo: null, cantidad:null, color: null, dimensiones:null, peso:null, caracteristicas:null  };
+=======
+  nuevoProducto = {  id: null, name:null,  descripcion: null, price: null, foto:null, tipo: null, cantidad:null, color: '#FFFFFF', dimensiones:null, peso:null, caracteristicas:null  };
+>>>>>>> ce879647a3d4c5446550b125ec6715fd1eeff9f3
 
   mostrarTabla:boolean=true;
   mostrarFormulario:boolean=false;
