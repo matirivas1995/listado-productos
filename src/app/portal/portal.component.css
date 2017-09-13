@@ -20,6 +20,13 @@
     background-size: cover;
   }
 
+  img{
+    height: 100%;
+    width: auto;
+    position: absolute;
+    top: 0px;
+  }
+
 
   .image-container {
     position: relative;
@@ -70,6 +77,6 @@
   }
   .product-price {
     font-size: 1.14286em;
-    color: #9f9f9f;
+    color: green;
     font-family: Playfair Display;
   }
