@@ -1,3 +1,5 @@
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+
 <div class="container">
         <br>
     <a class="waves-effect waves-light btn" [routerLink]="['/productos']"><i class="material-icons">view_list</i></a>
@@ -7,19 +9,20 @@
 <div class="layout-container">
   <div class="product-grid">
       <div class="col-md-4 col-sm-6" *ngFor="let producto of productos">
-          <div class="image-container">
-            <div class="product-image"><img src="{{producto.url}}"></div>              
-            <div class="overlay">
-                  <div [routerLink]="['/detail/'+producto.id]" class="button button-primary">Ver Detalles</div>
-                  <div class="button button-primary">Add To Cart</div>
-              </div>
-          </div>
-          <div class="product-details">
-              <div class="product-name">{{producto.name}}</div>
-              <div class="product-description">{{producto.descripcion}}</div>
-              <div class="product-price">{{producto.price}}$</div>
-              <div class="product-cantidad">{{producto.cantidad}} en stock</div>              
-          </div>
+        <div class="product-box">
+            <div class="image-container">
+                <img src="{{producto.url}}">            
+                <div class="overlay">
+                    <div [routerLink]="['/detail/'+producto.id]" class="button button-primary">Ver Detalles</div>
+                    <div class="button button-primary">Add To Cart</div>
+                </div>
+            </div>
+            <div class="product-details">
+                <div class="product-name">{{producto.name}}</div>
+                <div class="product-price">{{producto.price}}$</div>
+                <div class="product-cantidad">{{producto.cantidad}} en stock</div>              
+            </div>
+        </div>
       </div>
   </div> 
 </div>
