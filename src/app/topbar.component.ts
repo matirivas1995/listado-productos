@@ -14,15 +14,16 @@ import { Router }             from '@angular/router';
                     <a class="brand-logo" href="#" >MarketPlace</a>
 
                     <div *ngIf="sesionIniciada()" class="right">            
-                    <button type="button" class="btn btn-default btn-sm" (click)="logout()">
+                    <button type="button" class="btn btn-default btn-sm red lighten-2 hover" (click)="logout()">
                     <span class="glyphicon glyphicon-log-out"></span></button>
                    </div>  
 
-                        
-                    <ul *ngIf="sesionIniciada()" id="nav-mobile" class=" right right hide-on-med-and-down" (click)="toggleCartPopup($event)">
-                        <li><i class="material-icons">shopping_cart</i></li>
-                        <li><span *ngIf="cart_num">( {{cart_num}} )</span></li>
-                    </ul>
+                    <div *ngIf="sesionIniciada()" class="right" >    
+                        <button type="button" class="btn btn-default btn-sm red lighten-2" (click)="toggleCartPopup($event)">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                        <span *ngIf="cart_num">( {{cart_num}} )</span>
+                        </button>
+                    </div>
                    
                 </div>   
 
