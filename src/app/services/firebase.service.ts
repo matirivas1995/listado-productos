@@ -24,31 +24,32 @@ export class FirebaseService {
 
   addProducto(producto){
     let storageRef = firebase.storage().ref();
-    for(let selectedFile of [(<HTMLInputElement>document.getElementById('productofoto')).files[0]]){
-      if(selectedFile)
-      {
-        console.log("Se asigno imagen");        
-        let path=`/${this.folder}/${selectedFile.name}`;
-        let iRef = storageRef.child(path);
-        iRef.put(selectedFile).then((snapshot) => {
-          producto.foto = selectedFile.name;
+    let path=["","","","",""];
+    let foto=["","","","",""];
+    for(let selectedFiles of [(<HTMLInputElement>document.getElementById('productofoto')).files]){
+      console.log(selectedFiles);
+      if(selectedFiles.item(0)===null){
+        if(!producto.foto) 
+        {
+          path[0]="/productoimages/default_image.png";
+          foto[0]="default_image.png";
+          producto.foto = foto;
           producto.path = path;
-          return this.af.database.ref('productos/'+producto.id).set(producto);    
-        });
+        }
+        return this.af.database.ref('productos/'+producto.id).set(producto);        
       }
       else{
-        console.log("No se asigno imagen");
-        if(!producto.foto)
-        {
-          console.log("No tenia luego");
-          producto.foto = "default_image.png";
-          producto.path = "/productoimages/default_image.png";
-          console.log("Se le asigno "+producto.foto);
+        for(let i=0 ; i<selectedFiles.length ; i++){
+          console.log(selectedFiles.item(i).name);
+          path[i]=`/${this.folder}/${selectedFiles.item(i).name}`;
+          foto[i]=selectedFiles.item(i).name;
+          let iRef = storageRef.child(path[i]);
+          iRef.put(selectedFiles.item(i)).then((snapshot) => {  
+            producto.foto = foto;
+            producto.path = path;
+            return this.af.database.ref('productos/'+producto.id).set(producto);  
+          });      
         }
-        else{
-          console.log(producto.foto);
-        }
-        return this.af.database.ref('productos/'+producto.id).set(producto);            
       }
     }
   }
