@@ -1,3 +1,7 @@
+.vistas-container{
+  padding-top: 20px;
+}
+
 .layout-container {
   max-width: 1140px;
   padding-right: 30px;
@@ -96,3 +100,38 @@ img{
   line-height: 15px;        
   color: #b12704;
 }
+
+.tabla-fila{
+  font-size: 15px;
+  line-height: 19px;
+  font-weight: normal;
+  font-family: Lato,Arial,sans-serif;
+  font-style: normal;    
+  color: black;
+}
+
+.tabla-fila:hover{
+  color: green;
+}
+
+.tabla-acciones{
+  display: none;
+}
+
+.tabla-fila:hover .tabla-acciones{
+  display: inline;
+}
+
+.formulario{
+  padding-left: 10px;
+}
+
+.control-label, .input-md{
+  font-size: 13px;
+  line-height: 19px;
+  font-weight: normal;
+  font-family: Lato,Arial,sans-serif;
+  font-style: normal;    
+  color: white;
+}
+
