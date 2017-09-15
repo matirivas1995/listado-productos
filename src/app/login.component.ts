@@ -16,7 +16,7 @@ import { Router } from '@angular/router'
 
           if(form.value.username==='admin' && form.value.password==='admin'){
               localStorage.setItem('usuario',form.value.username);
-              this.router.navigate(['/productos']);
+              this.router.navigate(['/portal']);
           }
       }
     }

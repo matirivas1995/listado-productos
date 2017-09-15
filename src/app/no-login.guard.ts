@@ -13,7 +13,7 @@ export class NoLoginGuard implements CanActivate {
         return true;
     }
     else{
-        this.router.navigate(['/productos']);        
+        this.router.navigate(['/portal']);        
         return false;
     }
   }
