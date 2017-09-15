@@ -10,7 +10,9 @@ export class FilterPipe implements PipeTransform {
     if (term === undefined) return productos;
     //return filter
     return productos.filter(function(producto){
-      return producto.name.toLowerCase().includes(term.toLowerCase());
+      if (producto.name.toLowerCase().includes(term.toLowerCase()) || producto.descripcion.toLowerCase().includes(term.toLowerCase()))
+      return 1;
+      else {return 0;}
     })
   }
 
