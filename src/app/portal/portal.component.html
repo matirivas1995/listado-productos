@@ -49,8 +49,9 @@
 
     <!-- Vista Grid -->
     <div class="product-grid" *ngIf="mostrarGrid">
-        <div class="selectorCategoria">
-            <select  id="tipo_filtro" name="tipo_filtro" class="form-control validate" [(ngModel)]="pipeCategory">
+        <div class="selectorCategoria col row">
+            <label class="col" for="tipo_filtro"><i class="material-icons">filter_list</i></label>
+            <select  id="tipo_filtro" name="tipo_filtro" class="form-control validate col" [(ngModel)]="pipeCategory">
                 <option selected="selected" value="">Todo</option>    
                 <option value="Casa">Casa</option>
                 <option value="Automovil">Automovil</option>
