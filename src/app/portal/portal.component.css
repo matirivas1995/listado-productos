@@ -2,6 +2,15 @@
   padding-top: 20px;
 }
 
+.boton-vista .material-icons{
+  color: black;
+  font-size: 30px;
+}
+
+.boton-vista .material-icons:hover{
+  color: #ee6e73;
+}
+
 .layout-container {
   max-width: 1140px;
   padding-right: 30px;
@@ -59,7 +68,11 @@ img{
   font-size: 13px;
   line-height: 25px;        
   color: black; 
+}
 
+.overlay .button .material-icons, .add-to-cart .material-icons{
+  line-height: 25px; 
+  font-size: 13px;
 }
 
 .overlay .button:first-child {
@@ -133,6 +146,31 @@ img{
   font-family: Lato,Arial,sans-serif;
   font-style: normal;    
   color: white;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }
 
 /* Popup container */

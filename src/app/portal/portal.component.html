@@ -2,8 +2,8 @@
 
 <!-- Selector de vistas -->
 <div class="vistas-container">
-    <a class="waves-effect waves-light btn" (click)="verGrid()"><i class="material-icons">view_module</i></a>
-    <a class="waves-effect waves-light btn" (click)="verLista()"><i class="material-icons">view_list</i></a>    
+    <a class="boton-vista" (click)="verGrid()"><i class="material-icons">view_module</i></a>
+    <a class="boton-vista" (click)="verLista()"><i class="material-icons">view_list</i></a>    
 </div>
 
 <div class="layout-container">
@@ -35,11 +35,11 @@
                         <div class="sizes">Dimensiones: {{nuevoProducto.dimensiones}}</div>
                         <div class="colors">Color: <span class="color" [ngStyle]="{'background': nuevoProducto.color}"></span></div>
                         <div>
-                            <button class="add-to-cart button button-primary" (click)="addToCart(nuevoProducto)">Agregar al Carrito</button>
+                            <button class="add-to-cart button button-primary" (click)="addToCart(nuevoProducto);myFunction()">Agregar al Carrito <i class="material-icons">add_shopping_cart</i></button>
                         </div>
                     </div>
                     <div class="details col-md-1">    
-                        <button class="like  btn-default btn waves-effect waves-light red fix right large" name="action" (click)="myFunction()"><i class="material-icons center">cancel</i></button>                    </div>
+                        <button class="like  btn-default btn waves-effect waves-light red fix right large" name="action" (click)="myFunction()"><i class="material-icons center">close</i></button>                    </div>
                 </div>
             </div>
         </div>                
@@ -53,7 +53,7 @@
                     <img src="{{producto.url}}">            
                     <div class="overlay">
                         <button class="button button-primary" (click)="viewProducto(producto);myFunction();">Ver Detalles</button>
-                        <button class="button button-primary" (click)="addToCart(producto)">Agregar al Carrito</button>
+                        <button class="button button-primary" (click)="addToCart(producto)">Agregar al Carrito <i class="material-icons">add_shopping_cart</i></button>
                     </div>
                 </div>
                 <div class="product-details">
@@ -85,7 +85,7 @@
                         <a class="waves-effect waves-light btn red" (click)="delete(producto)"><i class="material-icons">delete</i></a>
                         <a class="waves-effect waves-light btn cyan" (click)="viewProducto(producto)"><i class="material-icons">create</i></a>
                         <a [routerLink]="['/detail/'+producto.id]" class="waves-effect waves-light btn green"><i class="material-icons">details</i></a>
-                        <a class="waves-effect waves-light btn blue" (click)="addToCart(producto)"><i class="material-icons">shopping_cart</i></a>
+                        <a class="waves-effect waves-light btn blue" (click)="addToCart(producto)"><i class="material-icons">add_shopping_cart</i></a>
                     </div>
                 </tr>
             </tbody>
@@ -93,7 +93,7 @@
         <!-- Formulario para agregar -->
         <!-- Boton para agregar -->
         <div class="col-md-4" *ngIf="!mostrarFormulario">
-            <a class="btn-floating btn-large waves-effect waves-light red right pulse" (click)="verFormulario()"><i class="material-icons">+</i></a>
+            <a class="btn-floating btn-large waves-effect waves-light red right pulse" (click)="verFormulario()"><i class="material-icons"><i class="material-icons">fiber_new</i></i></a>
         </div>
         <!-- Formulario -->
         <div class="col-md-4 row" *ngIf="mostrarFormulario">
