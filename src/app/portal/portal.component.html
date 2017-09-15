@@ -90,8 +90,8 @@
     <!-- Vista lista -->
     <div class="product-grid" *ngIf="mostrarLista">
         <div class="barraDeBusqueda col row">
-            <label class="col" for="textoDeBusqueda"><i class="material-icons">search</i></label>
-            <input  type="text" id="textoDeBusqueda" name="textoDeBusqueda" class="form-control validate col" [(ngModel)]="term"/>
+            <label class="col" for="term"><i class="material-icons">search</i></label>
+            <input  type="text" id="term" name="term" class="form-control validate col" [(ngModel)]="term"/>
         </div>
         <table class="left highlight responsive-table col-md-8" >
             <thead>    
