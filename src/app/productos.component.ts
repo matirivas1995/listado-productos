@@ -7,6 +7,7 @@ import { CartService }         from './services/cart.service'
 import * as firebase from 'firebase';
 import { ConfirmComponent } from './confirm.component';
 import { DialogService } from "ng2-bootstrap-modal";
+import { FilterPipe } from './filter.pipe';
 
 @Component({
   selector: 'my-productos',

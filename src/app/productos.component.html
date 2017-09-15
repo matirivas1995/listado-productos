@@ -75,8 +75,10 @@
       <div class="col s12">
         <div class="row">
           <div class="input-field col s12">
-            <i class="material-icons prefix">search</i>
-            <input type="text" id="autocomplete-input" class="autocomplete">
+            <form id="filter">
+              <i class="material-icons prefix">search</i>
+              <input type="text" name="searchTerm" id="autocomplete-input" class="autocomplete" [(ngModel)]="term">
+            </form>
           </div>
         </div>
       </div>
@@ -91,7 +93,7 @@
         </tr>
       </thead>  
       <tbody>
-        <tr *ngFor="let producto of productos | async" (click)="onSelect(producto)"
+        <tr *ngFor="let producto of productos | async | filter:term" (click)="onSelect(producto)"
             [class.selected]="producto === selectedProducto">
           <td >{{producto.id}}</td>
           <td >{{producto.name}}</td>
