@@ -7,6 +7,44 @@
 </div>
 
 <div class="layout-container">
+    <!-- El popup -->
+    <div class="popup">
+        <div class="popuptext" id="myPopup">
+            <div class="container-fliud">
+                <div class="wrapper row">
+                    <div class="preview col-md-6">
+                        <div class="preview-pic tab-content">
+                            <div class="tab-pane active" id="pic-1"><img src="{{nuevoProducto.url}}" /></div>
+                            <div class="tab-pane" id="pic-2"><img src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" /></div>
+                            <div class="tab-pane" id="pic-3"><img src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" /></div>
+                            <div class="tab-pane" id="pic-4"><img src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" /></div>
+                            <div class="tab-pane" id="pic-5"><img src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" /></div>
+                        </div>
+                        <ul class="preview-thumbnail nav nav-tabs">
+                            <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="{{nuevoProducto.url}}" /></a></li>
+                            <li><a data-target="#pic-2" data-toggle="tab"><img src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" /></a></li>
+                            <li><a data-target="#pic-3" data-toggle="tab"><img src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" /></a></li>
+                            <li><a data-target="#pic-4" data-toggle="tab"><img src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" /></a></li>
+                            <li><a data-target="#pic-5" data-toggle="tab"><img src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" /></a></li>
+                        </ul>
+                    </div>
+                    <div class="details col-md-6">
+                        <div class="product-title"> {{nuevoProducto.name}} </div>
+                        <p class="product-description">{{nuevoProducto.descripcion}}</p>
+                        <div class="price">Precio actual: <span>$ {{nuevoProducto.price}}</span></div>
+                        <div class="sizes">Dimensiones: {{nuevoProducto.dimensiones}}</div>
+                        <div class="colors">Color: <span class="color" [ngStyle]="{'background': nuevoProducto.color}"></span></div>
+                        <div>
+                            <button class="add-to-cart button button-primary" (click)="addToCart(nuevoProducto)">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                    <div class="details col-md-1">    
+                        <button class="like  btn-default btn waves-effect waves-light red fix right large" name="action" (click)="myFunction()"><i class="material-icons center">cancel</i></button>                    </div>
+                </div>
+            </div>
+        </div>                
+    </div>
+
     <!-- Vista Grid -->
     <div class="product-grid" *ngIf="mostrarGrid">
         <div class="col-md-3 col-sm-6" *ngFor="let producto of productos">
@@ -14,8 +52,8 @@
                 <div class="image-container">
                     <img src="{{producto.url}}">            
                     <div class="overlay">
-                        <div [routerLink]="['/detail/'+producto.id]" class="button button-primary">Ver Detalles</div>
-                        <div class="button button-primary" (click)="addToCart(producto)">Agregar al Carrito</div>
+                        <button class="button button-primary" (click)="viewProducto(producto);myFunction();">Ver Detalles</button>
+                        <button class="button button-primary" (click)="addToCart(producto)">Agregar al Carrito</button>
                     </div>
                 </div>
                 <div class="product-details">

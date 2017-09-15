@@ -60,6 +60,11 @@ export class PortalComponent implements OnInit {
     this.mostrarFormulario=false;
   }
 
+  myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup.classList.toggle("show");
+  }
+
   ngOnInit() {
     this.firebaseService.getProductos().subscribe(productos => {
       this.productos = productos;
