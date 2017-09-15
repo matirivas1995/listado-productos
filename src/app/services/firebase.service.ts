@@ -7,6 +7,7 @@ export class FirebaseService {
   productos:FirebaseListObservable<any[]>;
   producto:FirebaseObjectObservable<any[]>;
   folder:any;
+  pro:Producto;
 
   constructor(private af: AngularFireDatabase) {
     this.folder = 'productoimages';
@@ -56,6 +57,11 @@ export class FirebaseService {
   deleteProducto(id){
     this.af.object('/productos/'+id).remove();
   }
+
+  updateProducto(id,pro){
+    this.af.object('/productos/'+id).update(pro);
+  }
+
 }
 
 interface Producto{

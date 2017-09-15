@@ -1,6 +1,7 @@
 import {Component, HostBinding, ElementRef} from "@angular/core";
 import {CartService} from "./services/cart.service";
 import {CartBaseComponent} from "./cart-base.component";
+import {FirebaseService} from "./services/firebase.service";
 
 @Component({
     selector: 'cart-popup',
@@ -15,9 +16,10 @@ export class CartPopupComponent extends CartBaseComponent{
 
     constructor(
         protected cartService: CartService,
-        private eleref: ElementRef
+        private eleref: ElementRef,
+        private af:FirebaseService
     ) {
-        super(cartService);
+        super(cartService,af);
     }
     ngOnInit() {
         this.cartService.toggleCartSubject.subscribe(res => {

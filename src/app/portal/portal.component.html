@@ -36,8 +36,19 @@
                         <div class="product-description">Peso: {{nuevoProducto.peso}}</div>
                         <div class="product-description">Caracteristicas: {{nuevoProducto.caracteristicas}}</div>                        
                         <div class="colors">Color: <span class="color" [ngStyle]="{'background': nuevoProducto.color}"></span></div>
+                
+                            
                         <div>
-                            <button class="add-to-cart button button-primary" (click)="addToCart(nuevoProducto);myFunction()">Agregar al Carrito <i class="material-icons">add_shopping_cart</i></button>
+                                <div class="col-md-2">
+                                        <select  id="cant" name="cant" class="form-control validate" [(ngModel)]="quantity">
+                                          <option selected="selected" value=1>1</option>
+                                          <option value=2>2</option>
+                                          <option value=3>3</option>
+                                          <option value=4>4</option>
+                                          <option value=5>5</option>
+                                        </select>
+                                </div>
+                            <button class="add-to-cart button button-primary" (click)="addToCart(nuevoProducto,quantity);myFunction()">Agregar al Carrito <i class="material-icons">add_shopping_cart</i></button>
                         </div>
                     </div>
                     <div class="details col-md-1">    
@@ -140,7 +151,7 @@
                             <div class="form-group">
                             <label class="col-md-4 control-label" for="productofoto">Foto</label>
                             <div class="col-md-3">
-                                <input id="productofoto" class="input-file" type="file" >
+                                <input id="productofoto" class="input-file" type="file"  multiple>
                             </div>
                             </div>
                             <div class="form-group">

@@ -52,8 +52,9 @@ export class PortalComponent implements OnInit {
     this.mostrarFormulario=true;   
   }
 
-  addToCart(producto){
-    if(this.quantity) this.cartService.addToCart({producto,quantity:this.quantity})
+  addToCart(producto,cant){
+    console.log(cant);
+    this.cartService.addToCart({producto,quantity:this.quantity})
   }
 
   cancel(){
@@ -71,8 +72,8 @@ export class PortalComponent implements OnInit {
       this.productos = productos;
       this.productos.forEach(element => {
         let storageRef= firebase.storage().ref();
-        let spaceRef= storageRef.child(element.path);        
-        storageRef.child(element.path).getDownloadURL().then((url) => {
+        let spaceRef= storageRef.child(element.path[0]);       
+        storageRef.child(element.path[0]).getDownloadURL().then((url) => {
           element.url = url;
           console.log(element);
 
