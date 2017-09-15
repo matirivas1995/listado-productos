@@ -183,7 +183,7 @@ img{
 }
 
 /* The actual popup (appears on top) */
-.popup .popuptext {
+.popup .popupcontent {
   visibility: hidden;
   width: 100%;
   background-color: #555;
@@ -193,19 +193,11 @@ img{
   position: absolute;
   z-index: 2;
   top: 125%;
+  margin-top: 50px;
+  line-height: 1.5em;
 }
 
-/* Popup arrow */
-.popup .popuptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-}
+
 
 /* Toggle this class when clicking on the popup container (hide and show the popup) */
 .popup .show {
@@ -272,13 +264,8 @@ img{
     -webkit-animation-name: opacity;
             animation-name: opacity;
     -webkit-animation-duration: .3s;
-            animation-duration: .3s; }
-
-.card {
-  margin-top: 50px;
-  background: #eee;
-  padding: 3em;
-  line-height: 1.5em; }
+            animation-duration: .3s; 
+}
 
 @media screen and (min-width: 997px) {
   .wrapper {
@@ -305,14 +292,13 @@ img{
           flex-grow: 1; 
 }
 
-
-.checked, .price span {
+.price span {
   font-size: 17px;
   line-height: 21px;
   color: #ff9f1a; 
 }
 
-.product-title, .product-description, .price, .vote, .sizes {
+.product-title, .product-description, .price, .sizes {
   margin-bottom: 15px; }
 
 .product-title {
@@ -342,7 +328,7 @@ img{
   .color:first-of-type {
     margin-left: 20px; }
 
-.like {
+.close-popup {
   border: none;
   font-weight: bold;
   color: #fff;

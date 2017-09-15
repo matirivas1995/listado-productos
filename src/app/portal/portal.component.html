@@ -9,7 +9,7 @@
 <div class="layout-container">
     <!-- El popup -->
     <div class="popup">
-        <div class="popuptext" id="myPopup">
+        <div class="popupcontent" id="myPopup">
             <div class="container-fliud">
                 <div class="wrapper row">
                     <div class="preview col-md-6">
@@ -32,14 +32,16 @@
                         <div class="product-title"> {{nuevoProducto.name}} </div>
                         <p class="product-description">{{nuevoProducto.descripcion}}</p>
                         <div class="price">Precio actual: <span>$ {{nuevoProducto.price}}</span></div>
-                        <div class="sizes">Dimensiones: {{nuevoProducto.dimensiones}}</div>
+                        <div class="product-description">Dimensiones: {{nuevoProducto.dimensiones}}</div>
+                        <div class="product-description">Peso: {{nuevoProducto.peso}}</div>
+                        <div class="product-description">Caracteristicas: {{nuevoProducto.caracteristicas}}</div>                        
                         <div class="colors">Color: <span class="color" [ngStyle]="{'background': nuevoProducto.color}"></span></div>
                         <div>
                             <button class="add-to-cart button button-primary" (click)="addToCart(nuevoProducto);myFunction()">Agregar al Carrito <i class="material-icons">add_shopping_cart</i></button>
                         </div>
                     </div>
                     <div class="details col-md-1">    
-                        <button class="like  btn-default btn waves-effect waves-light red fix right large" name="action" (click)="myFunction()"><i class="material-icons center">close</i></button>                    </div>
+                        <button class="close-popup  btn-default btn waves-effect waves-light red fix right large" name="action" (click)="myFunction()"><i class="material-icons center">close</i></button>                    </div>
                 </div>
             </div>
         </div>                
