@@ -15,7 +15,7 @@
                     <img src="{{producto.url}}">            
                     <div class="overlay">
                         <div [routerLink]="['/detail/'+producto.id]" class="button button-primary">Ver Detalles</div>
-                        <div class="button button-primary">Agregar al Carrito</div>
+                        <div class="button button-primary" (click)="addToCart(producto)">Agregar al Carrito</div>
                     </div>
                 </div>
                 <div class="product-details">
