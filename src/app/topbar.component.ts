@@ -11,7 +11,8 @@ import { Router }             from '@angular/router';
             <div class="nav-wrapper">
 
                 <div class="container">
-                    <a class="brand-logo" href="#" >MarketPlace</a>
+                     
+                    <a class="brand-logo" href="#" ><i class="material-icons">shopping_basket</i>MarketPlace</a>
 
                     <div *ngIf="sesionIniciada()" class="right">            
                     <button type="button" class="btn btn-default btn-sm red lighten-2 hover" (click)="logout()">
