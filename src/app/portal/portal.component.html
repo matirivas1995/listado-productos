@@ -31,7 +31,7 @@
                     <div class="details col-md-6">
                         <div class="product-title"> {{nuevoProducto.name}} </div>
                         <p class="product-description">{{nuevoProducto.descripcion}}</p>
-                        <div class="price">Precio actual: <span>$ {{nuevoProducto.price}}</span></div>
+                        <div class="price">Precio actual: <span> {{nuevoProducto.price | currency}}</span></div>
                         <div class="product-description">Dimensiones: {{nuevoProducto.dimensiones}}</div>
                         <div class="product-description">Peso: {{nuevoProducto.peso}}</div>
                         <div class="product-description">Caracteristicas: {{nuevoProducto.caracteristicas}}</div>                        
@@ -49,7 +49,16 @@
 
     <!-- Vista Grid -->
     <div class="product-grid" *ngIf="mostrarGrid">
-        <div class="col-md-3 col-sm-6" *ngFor="let producto of productos">
+        <div class="selectorCategoria">
+            <select  id="tipo_filtro" name="tipo_filtro" class="form-control validate" [(ngModel)]="pipeCategory">
+                <option selected="selected" value="">Todo</option>    
+                <option value="Casa">Casa</option>
+                <option value="Automovil">Automovil</option>
+                <option value="Comida">Comida</option>
+                <option value="Vestimenta">Vestimenta</option>
+            </select>
+        </div>
+        <div class="col-md-3 col-sm-6" *ngFor="let producto of productos | filter:pipeCategory">
             <div class="product-box">
                 <div class="image-container">
                     <img src="{{producto.url}}">            

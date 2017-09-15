@@ -24,6 +24,12 @@
   padding-bottom: 5%;
 }
 
+.selectorCategoria{
+  width: 50%;
+  padding-bottom: 20px;
+  padding-left: 20px;
+}
+
 .product-box{
   border: 1px solid #eee;
   margin: 0 0 12px 12px;
@@ -298,7 +304,7 @@ img{
   color: #ff9f1a; 
 }
 
-.product-title, .product-description, .price, .sizes {
+.product-title, .product-description, .price {
   margin-bottom: 15px; }
 
 .product-title {
@@ -310,7 +316,7 @@ img{
   margin-top: 0; 
 }
 
-.product-description, .price, .sizes, .colors{
+.product-description, .price, .colors{
   font-family: Lato,Arial,sans-serif;
   font-style: normal;
   font-weight: normal;

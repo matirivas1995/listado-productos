@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FirebaseService }          from '../services/firebase.service';
-import { CartService }         from '../services/cart.service'
+import { CartService }         from '../services/cart.service';
 import * as firebase from 'firebase';
+import { CategoryPipe } from '../pipes/category.pipe'
 
 
 @Component({
