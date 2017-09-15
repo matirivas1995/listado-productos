@@ -15,7 +15,7 @@ export class PortalComponent implements OnInit {
   mostrarLista=false;
   mostrarFormulario=false;
   productos:any;
-  nuevoProducto = {  id: null, name:null,  descripcion: null, price: null, foto:null, tipo: null, cantidad:null, color: '#FFFFFF', dimensiones:null, peso:null, caracteristicas:null  };  
+  nuevoProducto = {  id: null, name:null,  descripcion: null, precio: null, foto:null, tipo: null, cantidad:null, color: '#FFFFFF', dimensiones:null, peso:null, caracteristicas:null  };  
   quantity: number = 1;  
   constructor(private firebaseService:FirebaseService, private cartService:CartService) { }
 
@@ -34,7 +34,7 @@ export class PortalComponent implements OnInit {
   }
 
   limpiarFormulario(){
-    this.nuevoProducto = {  id: null, name:null,  descripcion: null, price: null, foto:null, tipo: null, cantidad:null, color: null, dimensiones:null, peso:null, caracteristicas:null  };
+    this.nuevoProducto = {  id: null, name:null,  descripcion: null, precio: null, foto:null, tipo: null, cantidad:null, color: null, dimensiones:null, peso:null, caracteristicas:null  };
   }
 
   createProducto(){

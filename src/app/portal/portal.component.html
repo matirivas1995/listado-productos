@@ -31,7 +31,7 @@
                     <div class="details col-md-6">
                         <div class="product-title"> {{nuevoProducto.name}} </div>
                         <p class="product-description">{{nuevoProducto.descripcion}}</p>
-                        <div class="price">Precio actual: <span> {{nuevoProducto.price | currency}}</span></div>
+                        <div class="precio">Precio actual: <span> {{nuevoProducto.precio | currency}}</span></div>
                         <div class="product-description">Dimensiones: {{nuevoProducto.dimensiones}}</div>
                         <div class="product-description">Peso: {{nuevoProducto.peso}}</div>
                         <div class="product-description">Caracteristicas: {{nuevoProducto.caracteristicas}}</div>                        
@@ -70,7 +70,7 @@
                 </div>
                 <div class="product-details">
                     <div class="product-name">{{producto.name}}</div>
-                    <div class="product-price">{{producto.price}}$</div>
+                    <div class="product-precio">{{producto.precio}}$</div>
                     <div class="product-cantidad">{{producto.cantidad}} en stock</div>              
                 </div>
             </div>
@@ -92,7 +92,7 @@
                     <td class="left">{{producto.id}}</td>
                     <td >{{producto.name}}</td>
                     <td >{{producto.descripcion}}</td>
-                    <td class="right">{{ producto.price | currency }}</td>
+                    <td class="right">{{ producto.precio | currency }}</td>
                     <div class="tabla-acciones">
                         <a class="waves-effect waves-light btn red" (click)="delete(producto)"><i class="material-icons">delete</i></a>
                         <a class="waves-effect waves-light btn cyan" (click)="viewProducto(producto)"><i class="material-icons">create</i></a>
@@ -134,7 +134,7 @@
                             <div class="form-group">
                             <label class="col-md-4 control-label" for="productoprice">Precio:</label>
                             <div class="col-md-4">
-                                <input  type="number" class="form-control input-md" id="productoprice" [ngModel]="nuevoProducto?.price" (ngModelChange)="nuevoProducto.price = $event"/>
+                                <input  type="number" class="form-control input-md" id="productoprice" [ngModel]="nuevoProducto?.precio" (ngModelChange)="nuevoProducto.precio = $event"/>
                             </div>
                             </div>
                             <div class="form-group">

@@ -110,7 +110,7 @@ img{
   color: #4286f4;
 }
 
-.product-price {
+.product-precio {
   font-size: 21px;
   line-height: 21px;    
   color: #111111;
@@ -306,13 +306,13 @@ img{
           flex-grow: 1; 
 }
 
-.price span {
+.precio span {
   font-size: 17px;
   line-height: 21px;
   color: #ff9f1a; 
 }
 
-.product-title, .product-description, .price {
+.product-title, .product-description, .precio {
   margin-bottom: 15px; }
 
 .product-title {
@@ -324,7 +324,7 @@ img{
   margin-top: 0; 
 }
 
-.product-description, .price, .colors{
+.product-description, .precio, .colors{
   font-family: Lato,Arial,sans-serif;
   font-style: normal;
   font-weight: normal;

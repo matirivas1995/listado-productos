@@ -26,7 +26,7 @@ import { FilterPipe } from './filter.pipe';
 export class ProductosComponent implements OnInit {
   productos: FirebaseListObservable<any[]>;
   selectedProducto: Producto;
-  nuevoProducto = {  id: null, name:null,  descripcion: null, price: null, foto:null, tipo: null, cantidad:null, color: '#FFFFFF', dimensiones:null, peso:null, caracteristicas:null  };
+  nuevoProducto = {  id: null, name:null,  descripcion: null, precio: null, foto:null, tipo: null, cantidad:null, color: '#FFFFFF', dimensiones:null, peso:null, caracteristicas:null  };
   cart:Producto[];
   
 
@@ -54,7 +54,7 @@ export class ProductosComponent implements OnInit {
   getProductos(): void {}
 
   limpiarFormulario(){
-    this.nuevoProducto = {  id: null, name:null,  descripcion: null, price: null, foto:null, tipo: null, cantidad:null, color: null, dimensiones:null, peso:null, caracteristicas:null  };
+    this.nuevoProducto = {  id: null, name:null,  descripcion: null, precio: null, foto:null, tipo: null, cantidad:null, color: null, dimensiones:null, peso:null, caracteristicas:null  };
   }
 
   addProducto(){

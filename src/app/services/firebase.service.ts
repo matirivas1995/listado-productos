@@ -62,7 +62,7 @@ interface Producto{
   id?:number;
   name?:string;
   descripcion?:string;
-  price?:number;
+  precio?:number;
   foto?:string;
   tipo?:string;
   cantidad?:number;
