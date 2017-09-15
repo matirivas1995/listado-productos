@@ -52,6 +52,10 @@ export class FirebaseService {
       }
     }
   }
+
+  deleteProducto(id){
+    this.af.object('/productos/'+id).remove();
+  }
 }
 
 interface Producto{
