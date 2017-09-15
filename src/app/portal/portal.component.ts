@@ -51,7 +51,7 @@ export class PortalComponent implements OnInit {
     this.mostrarFormulario=true;   
   }
 
-  addCart(producto){
+  addToCart(producto){
     if(this.quantity) this.cartService.addToCart({producto,quantity:this.quantity})
   }
 
