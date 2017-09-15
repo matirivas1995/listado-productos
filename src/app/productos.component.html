@@ -99,7 +99,7 @@
           <td class="right">{{ producto.price | currency }}</td>
           <a class="waves-effect waves-light btn red" *ngIf="producto === selectedProducto" (click)="delete(producto); $event.stopPropagation()"><i class="material-icons" (click)="delete(producto); $event.stopPropagation()">delete</i></a>
           <a class="waves-effect waves-light btn cyan" *ngIf="producto === selectedProducto" (click)="viewProducto(producto)"><i class="material-icons" (click)="viewProducto(producto)">create</i></a>
-          <a class="waves-effect waves-light btn green" *ngIf="producto === selectedProducto" (click)="gotoDetail()"><i class="material-icons" (click)="gotoDetail()">details</i></a>
+          <a class="waves-effect waves-light btn green" *ngIf="producto === selectedProducto" (click)="showConfirm()"><i class="material-icons" (click)="showConfirm()">details</i></a>
           <a class="waves-effect waves-light btn blue" *ngIf="producto === selectedProducto" ><i class="material-icons" (click)="addCart(producto)">shopping_cart</i></a>
         </tr>
       </tbody>

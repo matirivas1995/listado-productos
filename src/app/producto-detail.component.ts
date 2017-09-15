@@ -4,19 +4,23 @@ import { Router,ActivatedRoute, Params } from '@angular/router';
 import * as firebase from 'firebase';
 import { Producto } from './producto'
 import { CartService} from './services/cart.service'
-
-
+import { ConfirmComponent } from './confirm.component';
+import { DialogService } from "ng2-bootstrap-modal";
+import {ProductosComponent} from './productos.component'
 @Component({
   selector: 'producto-detail',
   templateUrl: './producto-detail.component.html',
   styleUrls: [ './producto-detail.component.css' ]
 })
+
 export class ProductoDetailComponent implements OnInit {
   id:any;
   producto:any;
   imageUrl:any;
   quantity: number = 1;
   
+  
+
   constructor(
     private firebaseService:FirebaseService,
     private router:Router,

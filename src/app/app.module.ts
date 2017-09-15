@@ -26,6 +26,8 @@ import { PortalComponent } from './portal/portal.component';
 import { CartBaseComponent } from './cart-base.component';
 import { CartPopupComponent } from './cart-popup.component';
 
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
+import { ConfirmComponent } from './confirm.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBTGY08NdYQq6BuT2JgjuYo4QTnAYm8IJ0",
@@ -46,7 +48,8 @@ firebase.initializeApp(firebaseConfig);
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig,'listado-prodctos'),
     AngularFireDatabaseModule,
-    ColorPickerModule
+    ColorPickerModule,
+    BootstrapModalModule
   ],
   declarations: [
     AppComponent,
@@ -55,9 +58,16 @@ firebase.initializeApp(firebaseConfig);
     LoginComponent,
     TopbarComponent,
     CartPopupComponent,
-    PortalComponent
+    PortalComponent,
+    ConfirmComponent,
+    ProductosComponent
   ],
   providers: [ LoginGuard, NoLoginGuard, FirebaseService ,CartService],
+  //Don't forget to add the component to entryComponents section
+  entryComponents: [
+    ConfirmComponent,
+    ProductosComponent
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

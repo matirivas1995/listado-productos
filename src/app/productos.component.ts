@@ -5,12 +5,22 @@ import { FirebaseService }          from './services/firebase.service'
 import { Producto }                from './producto';
 import { CartService }         from './services/cart.service'
 import * as firebase from 'firebase';
-
+import { ConfirmComponent } from './confirm.component';
+import { DialogService } from "ng2-bootstrap-modal";
 
 @Component({
   selector: 'my-productos',
   templateUrl: './productos.component.html',
   styleUrls: [ './productos.component.css' ]
+})
+@Component({
+  selector: 'app',
+  template: `
+    <div class="container">
+      <button class="btn btn-default" (click)=showConfirm()>Show confirm</button>
+    </div>
+  `,
+  styleUrls: [ './popup.css' ]
 })
 export class ProductosComponent implements OnInit {
   productos: FirebaseListObservable<any[]>;
@@ -24,9 +34,17 @@ export class ProductosComponent implements OnInit {
   filtrarProducto:boolean=false;
   quantity: number = 1;
 
+  
+  showConfirm() {
+    let disposable = this.dialogService.addDialog(ConfirmComponent, {
+        title:'Confirm title', 
+        message :'Confirm message'})
+}
+
   constructor(
     private router: Router,
     public af : AngularFireDatabase,
+    private dialogService:DialogService,
     private firebaseService:FirebaseService, 
     private cartService:CartService,) { 
       this.productos=af.list('/productos');
