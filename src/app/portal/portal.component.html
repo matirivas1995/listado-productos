@@ -78,6 +78,10 @@
     </div> 
     <!-- Vista lista -->
     <div class="product-grid" *ngIf="mostrarLista">
+        <div class="barraDeBusqueda col row">
+            <label class="col" for="textoDeBusqueda"><i class="material-icons">search</i></label>
+            <input  type="text" id="textoDeBusqueda" name="textoDeBusqueda" class="form-control validate col" [(ngModel)]="term"/>
+        </div>
         <table class="left highlight responsive-table col-md-8" >
             <thead>    
                 <tr>
@@ -88,7 +92,7 @@
                 </tr>
             </thead>  
             <tbody>
-                <tr class="tabla-fila" *ngFor="let producto of productos">
+                <tr class="tabla-fila" *ngFor="let producto of productos | filter:term">
                     <td class="left">{{producto.id}}</td>
                     <td >{{producto.name}}</td>
                     <td >{{producto.descripcion}}</td>
