@@ -111,8 +111,6 @@
                     <div class="tabla-acciones">
                         <a class="waves-effect waves-light btn red" (click)="delete(producto)"><i class="material-icons">delete</i></a>
                         <a class="waves-effect waves-light btn cyan" (click)="viewProducto(producto)"><i class="material-icons">create</i></a>
-                        <a [routerLink]="['/detail/'+producto.id]" class="waves-effect waves-light btn green"><i class="material-icons">details</i></a>
-                        <a class="waves-effect waves-light btn blue" (click)="addToCart(producto)"><i class="material-icons">add_shopping_cart</i></a>
                     </div>
                 </tr>
             </tbody>
