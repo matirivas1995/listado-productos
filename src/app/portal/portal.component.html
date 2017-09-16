@@ -15,17 +15,17 @@
                     <div class="preview col-md-6">
                         <div class="preview-pic tab-content">
                             <div class="tab-pane active" id="pic-1"><img src="{{nuevoProducto.url}}" /></div>
-                            <div class="tab-pane" id="pic-2"><img src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" /></div>
-                            <div class="tab-pane" id="pic-3"><img src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" /></div>
-                            <div class="tab-pane" id="pic-4"><img src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" /></div>
-                            <div class="tab-pane" id="pic-5"><img src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" /></div>
+                            <div class="tab-pane" id="pic-2"><img src="http://www.imprintables.com/content/images/thumbs/default-image_450.png" /></div>
+                            <div class="tab-pane" id="pic-3"><img src="http://www.imprintables.com/content/images/thumbs/default-image_450.png" /></div>
+                            <div class="tab-pane" id="pic-4"><img src="http://www.imprintables.com/content/images/thumbs/default-image_450.png" /></div>
+                            <div class="tab-pane" id="pic-5"><img src="http://www.imprintables.com/content/images/thumbs/default-image_450.png" /></div>
                         </div>
                         <ul class="preview-thumbnail nav nav-tabs">
                             <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="{{nuevoProducto.url}}" /></a></li>
-                            <li><a data-target="#pic-2" data-toggle="tab"><img src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" /></a></li>
-                            <li><a data-target="#pic-3" data-toggle="tab"><img src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" /></a></li>
-                            <li><a data-target="#pic-4" data-toggle="tab"><img src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" /></a></li>
-                            <li><a data-target="#pic-5" data-toggle="tab"><img src="https://d.ibtimes.co.uk/en/full/1519347/lionel-messi.jpg?w=400" /></a></li>
+                            <li><a data-target="#pic-2" data-toggle="tab"><img src="http://www.imprintables.com/content/images/thumbs/default-image_450.png" /></a></li>
+                            <li><a data-target="#pic-3" data-toggle="tab"><img src="http://www.imprintables.com/content/images/thumbs/default-image_450.png" /></a></li>
+                            <li><a data-target="#pic-4" data-toggle="tab"><img src="http://www.imprintables.com/content/images/thumbs/default-image_450.png" /></a></li>
+                            <li><a data-target="#pic-5" data-toggle="tab"><img src="http://www.imprintables.com/content/images/thumbs/default-image_450.png" /></a></li>
                         </ul>
                     </div>
                     <div class="details col-md-6">
@@ -36,23 +36,21 @@
                         <div class="product-description">Peso: {{nuevoProducto.peso}}</div>
                         <div class="product-description">Caracteristicas: {{nuevoProducto.caracteristicas}}</div>                        
                         <div class="colors">Color: <span class="color" [ngStyle]="{'background': nuevoProducto.color}"></span></div>
-                
-                            
                         <div>
-                                <div class="col-md-2">
-                                        <select  id="cant" name="cant" class="form-control validate" [(ngModel)]="quantity">
-                                          <option selected="selected" value=1>1</option>
-                                          <option value=2>2</option>
-                                          <option value=3>3</option>
-                                          <option value=4>4</option>
-                                          <option value=5>5</option>
-                                        </select>
-                                </div>
-                            <button class="add-to-cart button button-primary" (click)="addToCart(nuevoProducto,quantity);myFunction()">Agregar al Carrito <i class="material-icons">add_shopping_cart</i></button>
+                            <div class="col">
+                                <select  id="cant" name="cant" class="form-control cart-quantity validate" [(ngModel)]="quantity">
+                                    <option selected="selected" value=1>1</option>
+                                    <option value=2>2</option>
+                                    <option value=3>3</option>
+                                    <option value=4>4</option>
+                                    <option value=5>5</option>
+                                </select>
+                            </div>
+                            <button class="col add-to-cart button button-primary" (click)="addToCart(nuevoProducto,quantity);mostrarPopup()">Agregar al Carrito <i class="material-icons">add_shopping_cart</i></button>
                         </div>
                     </div>
                     <div class="details col-md-1">    
-                        <button class="close-popup  btn-default btn waves-effect waves-light red fix right large" name="action" (click)="myFunction()"><i class="material-icons center">close</i></button>                    </div>
+                        <button class="close-popup  btn-default btn waves-effect waves-light red fix right large" name="action" (click)="mostrarPopup()"><i class="material-icons center">close</i></button>                    </div>
                 </div>
             </div>
         </div>                
@@ -75,7 +73,7 @@
                 <div class="image-container">
                     <img src="{{producto.url}}">            
                     <div class="overlay">
-                        <button class="button button-primary" (click)="viewProducto(producto);myFunction();">Ver Detalles</button>
+                        <button class="button button-primary" (click)="viewProducto(producto);mostrarPopup();">Ver Detalles</button>
                         <button class="button button-primary" (click)="addToCart(producto)">Agregar al Carrito <i class="material-icons">add_shopping_cart</i></button>
                     </div>
                 </div>

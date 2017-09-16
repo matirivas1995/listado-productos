@@ -3,7 +3,7 @@ import { FirebaseService }          from '../services/firebase.service';
 import { CartService }         from '../services/cart.service';
 import * as firebase from 'firebase';
 import { CategoryPipe } from '../pipes/category.pipe'
-import { FilterPipe } from '../filter.pipe'
+import { FilterPipe } from '../pipes/filter.pipe'
 
 
 @Component({
@@ -35,7 +35,7 @@ export class PortalComponent implements OnInit {
   }
 
   limpiarFormulario(){
-    this.nuevoProducto = {  id: null, name:null,  descripcion: null, precio: null, foto:null, tipo: null, cantidad:null, color: null, dimensiones:null, peso:null, caracteristicas:null  };
+    this.nuevoProducto = {  id: null, name:null,  descripcion: null, precio: null, foto:null, tipo: null, cantidad:null, color: '#FFFFFF', dimensiones:null, peso:null, caracteristicas:null  };
   }
 
   createProducto(){
@@ -63,27 +63,26 @@ export class PortalComponent implements OnInit {
     this.mostrarFormulario=false;
   }
 
-  myFunction() {
+  mostrarPopup() {
     var popup = document.getElementById("myPopup");
     popup.classList.toggle("show");
+    this.quantity = 1;      
   }
 
   ngOnInit() {
     this.firebaseService.getProductos().subscribe(productos => {
       this.productos = productos;
+      //le agrega a cada producto la url de su imagen para ser usada en el HTML 
       this.productos.forEach(element => {
         let storageRef= firebase.storage().ref();
         let spaceRef= storageRef.child(element.path[0]);       
         storageRef.child(element.path[0]).getDownloadURL().then((url) => {
           element.url = url;
-          console.log(element);
-
         }).catch((error) => {
           console.log(error);
         });
       });
     });
   }
-
 
 }

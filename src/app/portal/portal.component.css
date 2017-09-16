@@ -89,6 +89,15 @@ img{
   font-size: 13px;
 }
 
+.cart-quantity{
+  font-family: Lato,Arial,sans-serif; 
+  font-style: normal;    
+  font-weight: normal;    
+  font-size: 13px;
+  line-height: 25px;        
+  color: black; 
+}
+
 .overlay .button:first-child {
   margin-bottom: 2em;
 }

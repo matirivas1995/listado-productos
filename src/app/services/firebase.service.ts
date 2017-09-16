@@ -28,8 +28,9 @@ export class FirebaseService {
     let path=["","","","",""];
     let foto=["","","","",""];
     for(let selectedFiles of [(<HTMLInputElement>document.getElementById('productofoto')).files]){
-      console.log(selectedFiles);
+      //si no se subio ninguna imagen al formulario
       if(selectedFiles.item(0)===null){
+        //si el producto no tenia luego ninguna foto antes
         if(!producto.foto) 
         {
           path[0]="/productoimages/default_image.png";
@@ -39,13 +40,17 @@ export class FirebaseService {
         }
         return this.af.database.ref('productos/'+producto.id).set(producto);        
       }
+      //si se subieron archivos de imagen en el formulario
       else{
+        //por cada archivo que se subio
         for(let i=0 ; i<selectedFiles.length ; i++){
-          console.log(selectedFiles.item(i).name);
+          //path de la imagen relativo a la base de datos
           path[i]=`/${this.folder}/${selectedFiles.item(i).name}`;
+          //nombre del archivo que contiene la imagen del producto
           foto[i]=selectedFiles.item(i).name;
           let iRef = storageRef.child(path[i]);
           iRef.put(selectedFiles.item(i)).then((snapshot) => {  
+            //le agrega al producto los vectores que contienen los nombres de las imagenes y los paths
             producto.foto = foto;
             producto.path = path;
             return this.af.database.ref('productos/'+producto.id).set(producto);  
@@ -70,7 +75,8 @@ interface Producto{
   name?:string;
   descripcion?:string;
   precio?:number;
-  foto?:string;
+  foto?:string[];
+  path?:string[];
   tipo?:string;
   cantidad?:number;
   color?:string;

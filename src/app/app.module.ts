@@ -6,8 +6,6 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent }         from './app.component';
-import { ProductosComponent }      from './productos.component';
-import { ProductoDetailComponent }  from './producto-detail.component';
 import { TopbarComponent }         from './topbar.component';
 
 import { LoginComponent } from './login.component';
@@ -27,8 +25,7 @@ import { CartBaseComponent } from './cart-base.component';
 import { CartPopupComponent } from './cart-popup.component';
 
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
-import { ConfirmComponent } from './confirm.component';
-import { FilterPipe } from './filter.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 import { CategoryPipe } from './pipes/category.pipe'
 
 export const firebaseConfig = {
@@ -55,23 +52,16 @@ firebase.initializeApp(firebaseConfig);
   ],
   declarations: [
     AppComponent,
-    ProductoDetailComponent,
-    ProductosComponent,
     LoginComponent,
     TopbarComponent,
     CartPopupComponent,
     PortalComponent,
-    ConfirmComponent,
-    ProductosComponent,
     FilterPipe,
     CategoryPipe,
   ],
   providers: [ LoginGuard, NoLoginGuard, FirebaseService ,CartService],
   //Don't forget to add the component to entryComponents section
-  entryComponents: [
-    ConfirmComponent,
-    ProductosComponent
-  ],
+  entryComponents: [ ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
