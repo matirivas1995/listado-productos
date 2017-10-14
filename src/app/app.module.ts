@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent }         from './app.component';
 import { TopbarComponent }         from './topbar.component';
 
-import { LoginComponent } from './login.component';
+import { LoginComponent } from './login/login.component';
 import { LoginGuard }     from './guard/login.guard';
 import { AdminGuard }      from './guard/admin.guard';
 

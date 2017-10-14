@@ -16,6 +16,8 @@ export class AuthService {
 
   public isSignedInStream:Observable<boolean>;
   user: BehaviorSubject<User> = new BehaviorSubject(null);
+  public displayNameStream:Observable<string>; 
+  //para usar en el HTML {{authService.displayNameStream | async}}
 
   constructor(private afAuth:AngularFireAuth,
               private db:AngularFireDatabase,
@@ -40,7 +42,14 @@ export class AuthService {
        this.isSignedInStream = afAuth.authState
         .map<firebase.User,boolean>((user:firebase.User)=> {
           return user != null;
-       })
+       });
+       this.displayNameStream = this.afAuth.authState
+        .map<firebase.User,string>((user:firebase.User)=> {
+          if(user){
+            return user.displayName;
+          }
+          return "";
+        })
        
   }
 
