@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { CartService } from "./services/cart.service";
-import { Router }             from '@angular/router';
+import { Component, OnInit }    from '@angular/core';
+import { CartService }          from "./services/cart.service";
+import { AuthService }          from './services/auth.service';
+
 
 
 @Component({
@@ -14,12 +15,12 @@ import { Router }             from '@angular/router';
                      
                     <a class="brand-logo" href="#" ><i class="material-icons">shopping_basket</i>MarketPlace</a>
 
-                    <div *ngIf="sesionIniciada()" class="right">            
+                    <div *ngIf="authService.isSignedInStream | async"  class="right">            
                     <button type="button" class="btn btn-default btn-sm red lighten-2 hover" (click)="logout()">
                     <span class="glyphicon glyphicon-log-out"></span></button>
                    </div>  
 
-                    <div *ngIf="sesionIniciada()" class="right" >    
+                    <div *ngIf="authService.isSignedInStream | async" class="right" >    
                         <button type="button" class="btn btn-default btn-sm red lighten-2" (click)="toggleCartPopup($event)">
                         <span class="glyphicon glyphicon-shopping-cart"></span>
                         <span *ngIf="cart_num">( {{cart_num}} )</span>
@@ -46,7 +47,7 @@ export class TopbarComponent implements OnInit {
     public cart_num:number;
     constructor(
         private cartService: CartService,
-        private router: Router
+        private authService:AuthService
     ) { }
 
     ngOnInit() {
@@ -55,23 +56,15 @@ export class TopbarComponent implements OnInit {
             this.cart_num = res.length;
         })
     }
+
     toggleCartPopup = (event) => {
         event.preventDefault();
         event.stopPropagation();
         this.cartService.toggleCart()
     }
-    sesionIniciada():boolean{
-        if(localStorage.getItem('usuario') === null){
-          return false;
-        }
-        else{
-          return true;
-        }
-      }
-    
-      logout(){
-        localStorage.removeItem('usuario');
-        this.router.navigate(['']);
-      }
+   
+    logout(){
+    this.authService.firebaseSignOut();
+    }
 
 }

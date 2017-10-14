@@ -3,19 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent }         from './app.component';
 import { TopbarComponent }         from './topbar.component';
 
 import { LoginComponent } from './login.component';
-import { LoginGuard } from './login.guard';
-import { NoLoginGuard } from './no-login.guard';
+import { LoginGuard }     from './guard/login.guard';
+import { AdminGuard }      from './guard/admin.guard';
 
 import {ColorPickerModule} from 'angular4-color-picker';
 
-import { FirebaseService }          from './services/firebase.service';
-
+import { FirebaseService }      from './services/firebase.service';
+import { AuthService }          from './services/auth.service';
 import { CartService }          from './services/cart.service';
 
 import * as firebase from 'firebase';
@@ -26,7 +27,7 @@ import { CartPopupComponent } from './cart-popup.component';
 
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { FilterPipe } from './pipes/filter.pipe';
-import { CategoryPipe } from './pipes/category.pipe'
+import { CategoryPipe } from './pipes/category.pipe';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBTGY08NdYQq6BuT2JgjuYo4QTnAYm8IJ0",
@@ -47,6 +48,8 @@ firebase.initializeApp(firebaseConfig);
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig,'listado-prodctos'),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
+
     ColorPickerModule,
     BootstrapModalModule
   ],
@@ -59,7 +62,7 @@ firebase.initializeApp(firebaseConfig);
     FilterPipe,
     CategoryPipe,
   ],
-  providers: [ LoginGuard, NoLoginGuard, FirebaseService ,CartService],
+  providers: [ AdminGuard,LoginGuard,AuthService, FirebaseService ,CartService],
   //Don't forget to add the component to entryComponents section
   entryComponents: [ ],
   bootstrap: [ AppComponent ]

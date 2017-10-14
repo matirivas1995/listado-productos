@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms'
-import { Router } from '@angular/router'
+import { Component, OnInit }    from '@angular/core';
+import { NgForm }               from '@angular/forms';
+import { Router }               from '@angular/router';
+import { FirebaseService }      from './services/firebase.service';
+import { AuthService }          from './services/auth.service';
+
 
 @Component({
     selector: 'app-login',
@@ -8,15 +11,12 @@ import { Router } from '@angular/router'
     styleUrls: ['./login.component.css']
   })
   export class LoginComponent implements OnInit{
-      constructor(private router: Router){}
+      constructor(private authService:AuthService, private firebaseService:FirebaseService, private router: Router){}
       ngOnInit(){}
 
       login(form: NgForm){
-          console.log(form.value);
-
-          if(form.value.username==='admin' && form.value.password==='admin'){
-              localStorage.setItem('usuario',form.value.username);
-              this.router.navigate(['/portal']);
-          }
+          this.authService.firebaseLogin(form.value.username, form.value.password);
+          //this.router.navigate(['/portal']);
+                   
       }
     }
