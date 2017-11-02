@@ -6,12 +6,18 @@ import * as firebase from 'firebase';
 export class FirebaseService {
   productos:FirebaseListObservable<any[]>;
   producto:FirebaseObjectObservable<any[]>;
+  ventas:FirebaseListObservable<any[]>;
   folder:any;
   pro:Producto;
 
   constructor(private af: AngularFireDatabase) {
     this.folder = 'productoimages';
    }
+
+  getVentas(){
+    this.ventas = this.af.list('/ventas/') as FirebaseListObservable<Venta[]>
+    return this.ventas;
+  }
 
   getProductos(){
     this.productos = this.af.list('/productos/') as FirebaseListObservable<Producto[]>
@@ -83,4 +89,11 @@ interface Producto{
   dimensiones?:string;
   peso?:string;
   caracteristicas?:string;
+}
+
+interface Venta{
+  id?:number;
+  fecha?:number;
+  items?:Producto[];
+  total?:number;
 }

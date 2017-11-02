@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as Chart from 'echarts';
 import { FirebaseService }          from '../services/firebase.service';
 
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -10,8 +11,14 @@ import { FirebaseService }          from '../services/firebase.service';
 export class AdminComponent implements OnInit {
   echarts = Chart;
   constructor(private firebaseService:FirebaseService) { }
+  ventas:any;
 
   ngOnInit() {
+    this.firebaseService.getVentas().subscribe(ventas => {
+        this.ventas = ventas;
+        console.log(ventas);
+    });
+
     var Chart1 = this.echarts.init(document.getElementById('grafico1'));
     var Chart2 = this.echarts.init(document.getElementById('grafico2'));
     var Chart3 = this.echarts.init(document.getElementById('grafico3'));
@@ -59,6 +66,7 @@ export class AdminComponent implements OnInit {
     Chart2.setOption({
         title: {
             text: 'Cantidad Acumulada',
+            subtext: 'Ventas Acumuladas',
             left: 'center'
         },
         tooltip: {
