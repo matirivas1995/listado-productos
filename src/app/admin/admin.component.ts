@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chart from 'echarts';
 import { FirebaseService }          from '../services/firebase.service';
+import { Barras } from '../barras';
+import { Venta } from '../venta';
+import { Lines } from '../lines'
+import {BehaviorSubject} from "rxjs";
 
 
 @Component({
@@ -12,18 +16,27 @@ export class AdminComponent implements OnInit {
   echarts = Chart;
   constructor(private firebaseService:FirebaseService) { }
   ventas:any;
+  barrasList : Barras[];
+  lineasList : Lines[];
+  month = ["Ago","Sep","Oct","Nov","Dic"];
+  public barraSubject = new BehaviorSubject([]);
+  lista: any;
+
 
   ngOnInit() {
     this.firebaseService.getVentas().subscribe(ventas => {
         this.ventas = ventas;
-        console.log(ventas);
+        this.cargarBarras();
+        this.loadBarras();
+        this.showChartMati();
+        this.funcionMaricona();
+        this.showChart2();
     });
 
     var Chart1 = this.echarts.init(document.getElementById('grafico1'));
     var Chart2 = this.echarts.init(document.getElementById('grafico2'));
-    var Chart3 = this.echarts.init(document.getElementById('grafico3'));
     var Chart4 = this.echarts.init(document.getElementById('grafico4'));
-    
+
     Chart1.setOption({
         title : {
             text: 'Productos Vendidos',
@@ -63,128 +76,11 @@ export class AdminComponent implements OnInit {
         ]   
     });
 
-    Chart2.setOption({
-        title: {
-            text: 'Cantidad Acumulada',
-            subtext: 'Ventas Acumuladas',
-            left: 'center'
-        },
-        tooltip: {
-            trigger: 'item',
-            formatter: '{a} <br/>{b} : {c}'
-        },
-        legend: {
-            left: 'left',
-            data: ['jamon', 'queso']
-        },
-        xAxis: {
-            type: 'category',
-            name: 'x',
-            splitLine: {show: false},
-            data: ['en', 'feb', 'mar', 'ab', 'may', 'jun', 'jul', 'agos', 'sept']
-        },
-        grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-        },
-        yAxis: {
-            type: 'log',
-            name: 'y'
-        },
-        series: [
-            {
-                name: 'pan',
-                type: 'line',
-                data: [1, 3, 9, 27, 81, 247, 741, 2223, 6669]
-            },
-            {
-                name: 'jamon',
-                type: 'line',
-                data: [1, 2, 4, 8, 16, 32, 64, 128, 256]
-            },
-            {
-                name: 'queso',
-                type: 'line',
-                data: [1/2, 1/4, 1/8, 1/16, 1/32, 1/64, 1/128, 1/256, 1/512]
-            }
-        ]
-    });
-
-    Chart3.setOption({
-        title : {
-            text: 'Grafico de Barras Multiples',
-            subtext: '(valores acumulados)'
-        },
-        tooltip : {
-            trigger: 'axis'
-        },
-        legend: {
-            data:['jamon','queso']
-        },
-        toolbox: {
-            show : true,
-            feature : {
-                dataView : {show: true, readOnly: false},
-                magicType : {show: true, type: ['line', 'bar']},
-                restore : {show: true},
-                saveAsImage : {show: true}
-            }
-        },
-        calculable : true,
-        xAxis : [
-            {
-                type : 'category',
-                data : ['en','feb','mar','abr','may','jun','jul','ago','sept','oct','nov','dic']
-            }
-        ],
-        yAxis : [
-            {
-                type : 'value'
-            }
-        ],
-        series : [
-            {
-                name:'jamon',
-                type:'bar',
-                data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
-                markPoint : {
-                    data : [
-                        {type : 'max', name: '最大值'},
-                        {type : 'min', name: '最小值'}
-                    ]
-                },
-                markLine : {
-                    data : [
-                        {type : 'average', name: '平均值'}
-                    ]
-                }
-            },
-            {
-                name:'queso',
-                type:'bar',
-                data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
-                markPoint : {
-                    data : [
-                        {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183},
-                        {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
-                    ]
-                },
-                markLine : {
-                    data : [
-                        {type : 'average', name : '平均值'}
-                    ]
-                }
-            }
-        ]
-    });
-
     Chart4.setOption({
         tooltip : {
             trigger: 'axis',
-            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            axisPointer : {         
+                type : 'shadow'        
             }
         },
         legend: {
@@ -266,7 +162,125 @@ export class AdminComponent implements OnInit {
             }
         ]
     });
-
   }
 
+  cargarBarras(){
+    this.ventas.forEach(venta => {
+        var fecha = venta.fecha.substr(4,3);
+        venta.items.forEach(element => {
+          let current = this.barraSubject.getValue();
+          let dup = current.find(c=>c.name==element.producto);
+          if(dup) {
+            for(var i=0;i<this.month.length;i++){
+              if(this.month[i]==fecha){
+                dup.data[i]=dup.data[i]+element.cantidad;
+              }
+            }
+          }
+          else{
+            var barra = new Barras();
+            barra.name=element.producto;
+            for(var i=0;i<this.month.length;i++){
+              if(this.month[i]==fecha){
+                barra.data[i]= barra.data[i]+element.cantidad;
+              }
+            }
+            current.push(barra);
+            this.barraSubject.next(current);
+          }
+        });
+    });
+  }
+  loadBarras(){
+    this.barraSubject.subscribe(res => {
+        this.barrasList = res;
+    })
+  }
+  showChartMati(){
+    var Chart3 = this.echarts.init(document.getElementById('grafico3'));
+    Chart3.setOption({
+      title : {
+          text: 'Grafico de Barras Multiples',
+          subtext: '(valores acumulados)'
+      },
+      tooltip : {
+          trigger: 'axis'
+      },
+      toolbox: {
+          show : true,
+          feature : {
+              dataView : {show: true, readOnly: false},
+              magicType : {show: true, type: ['line', 'bar']},
+              restore : {show: true},
+              saveAsImage : {show: true}
+          }
+      },
+      calculable : true,
+      xAxis : [
+          {
+              type : 'category',
+              data : ['ago','sept','oct','nov','dic']
+          }
+      ],
+      yAxis : [
+          {
+              type : 'value'
+          }
+      ],
+      series : this.barrasList
+  });
+    
+  }
+
+
+
+
+  showChart2(){
+    const Chart2 = this.echarts.init(document.getElementById('grafico2'));
+
+    Chart2.setOption({
+        title: {
+            text: 'Cantidad Acumulada',
+            subtext: 'Ventas Acumuladas',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b} : {c}'
+        },
+        legend: {
+            show:false,
+            left: 'left',
+            data: ['jamon', 'queso']
+        },
+        xAxis: {
+            type: 'category',
+            name: 'mes',
+            splitLine: {show: false},
+            data: ['ago', 'sep','oct','nov','dic']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        yAxis: {
+            type: 'log',
+            name: 'cantidad'
+        },
+        series:this.lineasList
+    });
+  }
+  funcionMaricona(){
+    this.lineasList=this.barrasList;
+    this.lineasList.forEach(ref=>{
+        ref.type='line'
+        for (var i=1; i<ref.data.length;i++)
+        {
+          ref.data[i]=ref.data[i]+ref.data[i-1];
+        }
+    })
+  }
 }
+

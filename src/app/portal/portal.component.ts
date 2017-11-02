@@ -83,6 +83,7 @@ export class PortalComponent implements OnInit {
         });
       });
     });
+    console.log(this.productos);
   }
 
 }
