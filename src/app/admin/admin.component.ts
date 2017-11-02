@@ -5,6 +5,7 @@ import { Barras } from '../barras';
 import { Venta } from '../venta';
 import { Lines } from '../lines'
 import {BehaviorSubject} from "rxjs";
+import {Stack} from '../stack';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class AdminComponent implements OnInit {
   constructor(private firebaseService:FirebaseService) { }
   ventas:any;
   barrasList : Barras[];
-  lineasList : Lines[];
+  lineasList : Lines[]=[];
+  stackList :  Stack[]=[];
   month = ["Ago","Sep","Oct","Nov","Dic"];
   public barraSubject = new BehaviorSubject([]);
   lista: any;
@@ -32,99 +34,12 @@ export class AdminComponent implements OnInit {
         this.cargarBarras();
         this.loadBarras();
         this.showChartMati();
+        this.chargeStack();
+        this.terere();
         this.funcionMaricona();
         this.showChart2();
         this.funcionSantiago();
         this.showCharts1();
-    });
-
-    var Chart4 = this.echarts.init(document.getElementById('grafico4'));
-
-    Chart4.setOption({
-        tooltip : {
-            trigger: 'axis',
-            axisPointer : {         
-                type : 'shadow'        
-            }
-        },
-        legend: {
-            data: ['data1', 'data2','data3','data4','data5']
-        },
-        grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-        },
-        xAxis:  {
-            type: 'value'
-        },
-        yAxis: {
-            type: 'category',
-            data: ['item1','item2','item3','item4','item5','item6','item7']
-        },
-        series: [
-            {
-                name: 'conjunto1',
-                type: 'bar',
-                stack: '总量',
-                label: {
-                    normal: {
-                        show: true,
-                        position: 'insideRight'
-                    }
-                },
-                data: [320, 302, 301, 334, 390, 330, 320]
-            },
-            {
-                name: 'conjunto2',
-                type: 'bar',
-                stack: '总量',
-                label: {
-                    normal: {
-                        show: true,
-                        position: 'insideRight'
-                    }
-                },
-                data: [120, 132, 101, 134, 90, 230, 210]
-            },
-            {
-                name: 'conjunto3',
-                type: 'bar',
-                stack: '总量',
-                label: {
-                    normal: {
-                        show: true,
-                        position: 'insideRight'
-                    }
-                },
-                data: [220, 182, 191, 234, 290, 330, 310]
-            },
-            {
-                name: 'conjunto4',
-                type: 'bar',
-                stack: '总量',
-                label: {
-                    normal: {
-                        show: true,
-                        position: 'insideRight'
-                    }
-                },
-                data: [150, 212, 201, 154, 190, 330, 410]
-            },
-            {
-                name: 'conjunto6',
-                type: 'bar',
-                stack: '总量',
-                label: {
-                    normal: {
-                        show: true,
-                        position: 'insideRight'
-                    }
-                },
-                data: [820, 832, 901, 934, 1290, 1330, 1320]
-            }
-        ]
     });
   }
 
@@ -234,13 +149,16 @@ export class AdminComponent implements OnInit {
     });
   }
   funcionMaricona(){
-    this.lineasList=this.barrasList;
-    this.lineasList.forEach(ref=>{
-        ref.type='line'
-        for (var i=1; i<ref.data.length;i++)
+    this.barrasList.forEach(ref=>{
+        var ln = new Lines();
+        ln.data = ref.data;
+        ln.name = ref.name;
+        ln.type = 'line';
+        for (var i=1; i<ln.data.length;i++)
         {
-          ref.data[i]=ref.data[i]+ref.data[i-1];
+          ln.data[i]=ln.data[i]+ln.data[i-1];
         }
+        this.lineasList.push(ln);
     })
   }
   funcionSantiago(){
@@ -330,6 +248,50 @@ export class AdminComponent implements OnInit {
             ]   
         });
 
+    }
+
+    chargeStack(){  
+      this.barrasList.forEach(ref=>{
+        console.log(ref);
+        var st = new Stack();
+        st.name=ref.name;
+        st.data=ref.data;
+        st.type='bar';
+        this.stackList.push(st);
+        console.log(st);
+      })
+    }
+
+    terere(){
+      var Chart4 = this.echarts.init(document.getElementById('grafico4'));
+      
+          Chart4.setOption({
+            title : {
+              text: 'Grafico de ventas totales por mes',
+            },
+              tooltip : {
+                  trigger: 'axis',
+                  axisPointer : {         
+                      type : 'shadow'        
+                  }
+              },
+              legend: {
+              },
+              grid: {
+                  left: '3%',
+                  right: '4%',
+                  bottom: '3%',
+                  containLabel: true
+              },
+              xAxis:  {
+                  type: 'value'
+              },
+              yAxis: {
+                  type: 'category',
+                  data: ['ago', 'sep','oct','nov','dic']
+              },
+              series: this.stackList
+          });
     }
 }
 
