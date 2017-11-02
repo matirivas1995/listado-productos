@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chart from 'echarts';
+import { FirebaseService }          from '../services/firebase.service';
 
 @Component({
   selector: 'app-admin',
@@ -8,7 +9,7 @@ import * as Chart from 'echarts';
 })
 export class AdminComponent implements OnInit {
   echarts = Chart;
-  constructor() { }
+  constructor(private firebaseService:FirebaseService) { }
 
   ngOnInit() {
     var Chart1 = this.echarts.init(document.getElementById('grafico1'));
@@ -179,7 +180,7 @@ export class AdminComponent implements OnInit {
             }
         },
         legend: {
-            data: ['直接访问', '邮件营销','联盟广告','视频广告','搜索引擎']
+            data: ['data1', 'data2','data3','data4','data5']
         },
         grid: {
             left: '3%',
@@ -192,11 +193,11 @@ export class AdminComponent implements OnInit {
         },
         yAxis: {
             type: 'category',
-            data: ['周一','周二','周三','周四','周五','周六','周日']
+            data: ['item1','item2','item3','item4','item5','item6','item7']
         },
         series: [
             {
-                name: '直接访问',
+                name: 'conjunto1',
                 type: 'bar',
                 stack: '总量',
                 label: {
@@ -208,7 +209,7 @@ export class AdminComponent implements OnInit {
                 data: [320, 302, 301, 334, 390, 330, 320]
             },
             {
-                name: '邮件营销',
+                name: 'conjunto2',
                 type: 'bar',
                 stack: '总量',
                 label: {
@@ -220,7 +221,7 @@ export class AdminComponent implements OnInit {
                 data: [120, 132, 101, 134, 90, 230, 210]
             },
             {
-                name: '联盟广告',
+                name: 'conjunto3',
                 type: 'bar',
                 stack: '总量',
                 label: {
@@ -232,7 +233,7 @@ export class AdminComponent implements OnInit {
                 data: [220, 182, 191, 234, 290, 330, 310]
             },
             {
-                name: '视频广告',
+                name: 'conjunto4',
                 type: 'bar',
                 stack: '总量',
                 label: {
@@ -244,7 +245,7 @@ export class AdminComponent implements OnInit {
                 data: [150, 212, 201, 154, 190, 330, 410]
             },
             {
-                name: '搜索引擎',
+                name: 'conjunto6',
                 type: 'bar',
                 stack: '总量',
                 label: {
