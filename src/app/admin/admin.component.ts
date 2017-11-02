@@ -18,8 +18,8 @@ export class AdminComponent implements OnInit {
     
     Chart1.setOption({
         title : {
-            text: '某站点用户访问来源',
-            subtext: '纯属虚构',
+            text: 'Productos Vendidos',
+            subtext: '(cantidad)',
             x:'center'
         },
         tooltip : {
@@ -29,20 +29,20 @@ export class AdminComponent implements OnInit {
         legend: {
             orient: 'vertical',
             left: 'left',
-            data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+            data: ['data1','data2','data3','data4','data5']
         },
         series : [
             {
-                name: '访问来源',
+                name: 'cantidad',
                 type: 'pie',
                 radius : '55%',
                 center: ['50%', '60%'],
                 data:[
-                    {value:335, name:'直接访问'},
-                    {value:310, name:'邮件营销'},
-                    {value:234, name:'联盟广告'},
-                    {value:135, name:'视频广告'},
-                    {value:1548, name:'搜索引擎'}
+                    {value:335, name:'data1'},
+                    {value:310, name:'data2'},
+                    {value:234, name:'data3'},
+                    {value:135, name:'data4'},
+                    {value:1548, name:'data5'}
                 ],
                 itemStyle: {
                     emphasis: {
