@@ -1,5 +1,7 @@
 import { Component }          from '@angular/core';
 import { Router }             from '@angular/router';
+import { AuthService }    from './services/auth.service';
+
 
 
 @Component({
@@ -12,7 +14,7 @@ export class AppComponent {
 
   title = 'Lista de Productos';
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private auth:AuthService){}
 
   sesionIniciada():boolean{
     if(localStorage.getItem('usuario') === null){

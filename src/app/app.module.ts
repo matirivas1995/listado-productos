@@ -28,6 +28,7 @@ import { CartPopupComponent } from './cart-popup.component';
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 import { FilterPipe } from './pipes/filter.pipe';
 import { CategoryPipe } from './pipes/category.pipe';
+import { AdminComponent } from './admin/admin.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyBTGY08NdYQq6BuT2JgjuYo4QTnAYm8IJ0",
@@ -61,6 +62,7 @@ firebase.initializeApp(firebaseConfig);
     PortalComponent,
     FilterPipe,
     CategoryPipe,
+    AdminComponent,
   ],
   providers: [ AdminGuard,LoginGuard,AuthService, FirebaseService ,CartService],
   //Don't forget to add the component to entryComponents section
