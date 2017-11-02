@@ -6,7 +6,7 @@ import { Venta } from '../venta';
 import { Lines } from '../lines'
 import {BehaviorSubject} from "rxjs";
 import {Stack} from '../stack';
-
+import {Data} from '../data'
 
 @Component({
   selector: 'app-admin',
@@ -27,6 +27,7 @@ export class AdminComponent implements OnInit {
   cantidad_productos:number[]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
   nombres_productos:string[]=[""];
   list_item:any[]=[""];
+  dataList: Data[]=[];
 
   ngOnInit() {
     this.firebaseService.getVentas().subscribe(ventas => {
@@ -79,8 +80,9 @@ export class AdminComponent implements OnInit {
     var Chart3 = this.echarts.init(document.getElementById('grafico3'));
     Chart3.setOption({
       title : {
-          text: 'Grafico de Barras Multiples',
-          subtext: '(valores acumulados)'
+          text: 'Barras Multiples',
+          subtext: '(valores acumulados)',
+          left:'center'
       },
       tooltip : {
           trigger: 'axis'
@@ -205,6 +207,15 @@ export class AdminComponent implements OnInit {
         this.nombres_productos[_i]=this.nombres_productos[_i+1];
         this.nombres_productos[_i+1]=aux2;
     }
+    for (var _i = 0; _i < this.cantidad_productos.length-1; _i++)
+    {
+      var dat = new Data();
+
+      dat.name=this.nombres_productos[_i];
+      dat.value=this.cantidad_productos[_i]
+      this.dataList.push(dat);
+    }
+    console.log(this.dataList)
     }
 
     showCharts1(){
@@ -222,7 +233,7 @@ export class AdminComponent implements OnInit {
             legend: {
                 orient: 'vertical',
                 left: 'left',
-                data: [this.nombres_productos[0],this.nombres_productos[1],this.nombres_productos[2],this.nombres_productos[3],this.nombres_productos[4]]
+                data: this.nombres_productos
             },
             series : [
                 {
@@ -230,13 +241,7 @@ export class AdminComponent implements OnInit {
                     type: 'pie',
                     radius : '55%',
                     center: ['50%', '60%'],
-                    data:[
-                        {value:this.cantidad_productos[0], name:this.nombres_productos[0]},
-                        {value:this.cantidad_productos[1], name:this.nombres_productos[1]},
-                        {value:this.cantidad_productos[2], name:this.nombres_productos[2]},
-                        {value:this.cantidad_productos[3], name:this.nombres_productos[3]},
-                        {value:this.cantidad_productos[4], name:this.nombres_productos[4]}
-                    ],
+                    data:this.dataList,
                     itemStyle: {
                         emphasis: {
                             shadowBlur: 10,
@@ -268,6 +273,7 @@ export class AdminComponent implements OnInit {
           Chart4.setOption({
             title : {
               text: 'Grafico de ventas totales por mes',
+              left: 'center'
             },
               tooltip : {
                   trigger: 'axis',
