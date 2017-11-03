@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseService }          from '../services/firebase.service';
 import { CartService }         from '../services/cart.service';
 import * as firebase from 'firebase';
-import { CategoryPipe } from '../pipes/category.pipe'
-import { FilterPipe } from '../pipes/filter.pipe'
+import { CategoryPipe } from '../pipes/category.pipe';
+import { FilterPipe } from '../pipes/filter.pipe';
+import { Router }               from '@angular/router';
+
 
 
 @Component({
@@ -18,7 +20,7 @@ export class PortalComponent implements OnInit {
   productos:any;
   nuevoProducto = {  id: null, name:null,  descripcion: null, precio: null, foto:null, tipo: null, cantidad:null, color: '#FFFFFF', dimensiones:null, peso:null, caracteristicas:null  };  
   quantity: number = 1;  
-  constructor(private firebaseService:FirebaseService, private cartService:CartService) { }
+  constructor(private firebaseService:FirebaseService, private cartService:CartService,private router: Router) { }
 
   verGrid(){
     this.mostrarGrid=true;
@@ -67,6 +69,10 @@ export class PortalComponent implements OnInit {
     var popup = document.getElementById("myPopup");
     popup.classList.toggle("show");
     this.quantity = 1;      
+  }
+
+  administrar(){
+    this.router.navigate(['/admin'])
   }
 
   ngOnInit() {
