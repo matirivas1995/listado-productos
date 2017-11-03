@@ -22,6 +22,7 @@ export class AdminComponent implements OnInit {
   stackList :  Stack[]=[];
   month = ["Ago","Sep","Oct","Nov","Dic"];
   public barraSubject = new BehaviorSubject([]);
+  public newSubject = new BehaviorSubject([]);
   lista: any;
   startDate:string="Ago";
   endDate:string="Dic";
@@ -41,6 +42,7 @@ export class AdminComponent implements OnInit {
         this.barrasList=[];
         this.lineasList=[];
         this.stackList=[];
+        this.barraSubject=this.newSubject;
         this.cargarBarras();
         this.loadBarras();
         this.showChartMati();
@@ -80,6 +82,7 @@ export class AdminComponent implements OnInit {
                   current.push(barra);
                   this.barraSubject.next(current);
                 }
+                dup=null;
               });
         }
     });

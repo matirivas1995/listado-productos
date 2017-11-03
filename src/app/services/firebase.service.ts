@@ -7,6 +7,7 @@ export class FirebaseService {
   productos:FirebaseListObservable<any[]>;
   producto:FirebaseObjectObservable<any[]>;
   ventas:FirebaseListObservable<any[]>;
+  venta:FirebaseObjectObservable<any[]>;
   folder:any;
   pro:Producto;
 
@@ -18,6 +19,10 @@ export class FirebaseService {
     this.ventas = this.af.list('/ventas/') as FirebaseListObservable<Venta[]>
     return this.ventas;
   }
+  setVentas(venta){
+    this.af.database.ref('/ventas/'+venta.id).set(venta)
+  }
+
 
   getProductos(){
     this.productos = this.af.list('/productos/') as FirebaseListObservable<Producto[]>

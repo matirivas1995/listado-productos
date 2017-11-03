@@ -1,7 +1,8 @@
+import {Item } from './item'
+
 export class Venta{
-    
     id?:number;
-    fecha?:number;
-    items?:String[];
+    fecha?:string;
+    items?:Item[];
     total?:number;
 }
