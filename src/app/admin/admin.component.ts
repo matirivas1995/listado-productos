@@ -39,9 +39,6 @@ export class AdminComponent implements OnInit {
         this.ventas = ventas;
         this.mesMin = this.monthGenerate(this.startDate);
         this.mesMax = this.monthGenerate(this.endDate);
-        this.barrasList=[];
-        this.lineasList=[];
-        this.stackList=[];
         this.cargarBarras();
         this.loadBarras();
         this.showChartMati();
