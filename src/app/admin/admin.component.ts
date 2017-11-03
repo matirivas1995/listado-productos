@@ -22,7 +22,6 @@ export class AdminComponent implements OnInit {
   stackList :  Stack[]=[];
   month = ["Ago","Sep","Oct","Nov","Dic"];
   public barraSubject = new BehaviorSubject([]);
-  lista: any;
   startDate:string="Ago";
   endDate:string="Dic";
   mesActual:number;
@@ -34,13 +33,42 @@ export class AdminComponent implements OnInit {
   dataList: Data[]=[];
 
   ngOnInit() {
+    var nro_fecha;
+    var ventas;
+    ventas= new Venta;
+    var ventas2;
+    ventas2= new Array;
     this.firebaseService.getVentas().subscribe(ventas => {
-        this.ventas = ventas;
-        this.mesMin = this.monthGenerate(this.startDate);
-        this.mesMax = this.monthGenerate(this.endDate);
-        this.barrasList=[];
-        this.lineasList=[];
-        this.stackList=[];
+            ventas.forEach(venta=>{
+            this.mesMin = this.monthGenerate(this.startDate);
+            this.mesMax = this.monthGenerate(this.endDate);
+            var venta_fecha=(venta.fecha).substr(4,3);
+            nro_fecha=this.monthGenerate(venta_fecha)
+            //console.log(venta_fecha + ">" + this.mesMin + " y " + venta_fecha + "<" + this.mesMax)
+            if (nro_fecha >= this.mesMin && nro_fecha <= this.mesMax)
+            {
+                console.log("se cobro")
+                ventas2.push(venta);
+            }
+        })
+        this.ventas = ventas2;
+        console.log("ventas");
+        console.log(this.ventas);
+        console.log("barras")
+        console.log(this.barrasList);
+        this.barrasList=new Array;
+        console.log("despuess")
+        console.log(this.barrasList);
+        this.lineasList=new Array;
+        this.dataList=new Array;
+        this.stackList=new Array;
+        this.barraSubject = new BehaviorSubject([]);
+        this.cantidad_productos= new Array;
+        this.nombres_productos= new Array;
+        this.list_item= new Array;
+        console.log(this.lineasList);
+        console.log(this.stackList);
+        console.log(this.barraSubject);
         this.cargarBarras();
         this.loadBarras();
         this.showChartMati();
@@ -49,7 +77,9 @@ export class AdminComponent implements OnInit {
         this.funcionMaricona();
         this.showChart2();
         this.funcionSantiago();
+        
         this.cargarData();
+        
         this.showCharts1();
     });
   }
@@ -57,8 +87,8 @@ export class AdminComponent implements OnInit {
   cargarBarras(){
     this.ventas.forEach(venta => {
         var fecha = venta.fecha.substr(4,3);
-        this.mesActual = this.monthGenerate(fecha);
-        if (this.mesActual>=this.mesMin && this.mesActual<=this.mesMax){
+        //this.mesActual = this.monthGenerate(fecha);
+        //if (this.mesActual>=this.mesMin && this.mesActual<=this.mesMax){
             venta.items.forEach(element => {
                 let current = this.barraSubject.getValue();
                 let dup = current.find(c=>c.name==element.producto);
@@ -82,7 +112,8 @@ export class AdminComponent implements OnInit {
                 }
               });
         }
-    });
+    //}
+    );
   }
   loadBarras(){
     this.barraSubject.subscribe(res => {
