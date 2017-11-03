@@ -5,6 +5,41 @@
 </head>
 
 <body>
+    <div class="selectorMes col row">
+        <label class="col etiqueta" for="mes_desde">Desde</label>
+        <select  id="mes_desde" name="mes_desde" class="form-control validate col" [(ngModel)]="pipeCategory">
+            <option selected="selected" value="">---</option>    
+            <option value="Enero">Enero</option>
+            <option value="Febrero">Febrero</option>
+            <option value="Marzo">Marzo</option>
+            <option value="Abril">Abril</option>
+            <option value="Mayo">Mayo</option>
+            <option value="Junio">Junio</option>
+            <option value="Julio">Julio</option>
+            <option value="Agosto">Agosto</option>
+            <option value="Septiembre">Septiempre</option>
+            <option value="Octubre">Octubre</option>
+            <option value="Noviembre">Noviembre</option>
+            <option value="Diciembre">Diciembre</option>
+        </select>
+
+        <label class="col etiqueta" for="mes_hasta">Hasta</label>
+        <select  id="mes_hasta" name="mes_hasta" class="form-control validate col" [(ngModel)]="pipeCategory">
+            <option selected="selected" value="">---</option>    
+            <option value="Enero">Enero</option>
+            <option value="Febrero">Febrero</option>
+            <option value="Marzo">Marzo</option>
+            <option value="Abril">Abril</option>
+            <option value="Mayo">Mayo</option>
+            <option value="Junio">Junio</option>
+            <option value="Julio">Julio</option>
+            <option value="Agosto">Agosto</option>
+            <option value="Septiembre">Septiempre</option>
+            <option value="Octubre">Octubre</option>
+            <option value="Noviembre">Noviembre</option>
+            <option value="Diciembre">Diciembre</option>
+        </select>
+    </div>
   <!-- preparing a DOM with width and height for ECharts -->
   <div class="layout-container">
       <div class="row">
