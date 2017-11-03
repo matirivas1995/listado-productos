@@ -28,8 +28,7 @@ export class AdminComponent implements OnInit {
   mesActual:number;
   mesMin: number;
   mesMax: number;
-
-  cantidad_productos:number[]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+  cantidad_productos:number[]=[];
   nombres_productos:string[]=[""];
   list_item:any[]=[""];
   dataList: Data[]=[];
@@ -39,6 +38,9 @@ export class AdminComponent implements OnInit {
         this.ventas = ventas;
         this.mesMin = this.monthGenerate(this.startDate);
         this.mesMax = this.monthGenerate(this.endDate);
+        this.barrasList=[];
+        this.lineasList=[];
+        this.stackList=[];
         this.cargarBarras();
         this.loadBarras();
         this.showChartMati();
@@ -47,6 +49,7 @@ export class AdminComponent implements OnInit {
         this.funcionMaricona();
         this.showChart2();
         this.funcionSantiago();
+        this.cargarData();
         this.showCharts1();
     });
   }
@@ -217,15 +220,6 @@ export class AdminComponent implements OnInit {
         this.nombres_productos[_i]=this.nombres_productos[_i+1];
         this.nombres_productos[_i+1]=aux2;
     }
-    for (var _i = 0; _i < this.cantidad_productos.length-1; _i++)
-    {
-      var dat = new Data();
-
-      dat.name=this.nombres_productos[_i];
-      dat.value=this.cantidad_productos[_i]
-      this.dataList.push(dat);
-    }
-    console.log(this.dataList)
     }
 
     showCharts1(){
@@ -250,7 +244,7 @@ export class AdminComponent implements OnInit {
                     name: 'Cantidad Vendida',
                     type: 'pie',
                     radius : '55%',
-                    center: ['50%', '60%'],
+                    center: ['50%', '70%'],
                     data:this.dataList,
                     itemStyle: {
                         emphasis: {
@@ -267,13 +261,11 @@ export class AdminComponent implements OnInit {
 
     chargeStack(){  
       this.barrasList.forEach(ref=>{
-        console.log(ref);
         var st = new Stack();
         st.name=ref.name;
         st.data=ref.data;
         st.type='bar';
         this.stackList.push(st);
-        console.log(st);
       })
     }
 
@@ -322,6 +314,14 @@ export class AdminComponent implements OnInit {
             case "Dic":
                 return 4;
             }
+    }
+    cargarData(){
+        this.stackList.forEach(ref=>{
+            var dt = new Data();
+            dt.name=ref.name;
+            dt.value=ref.data[4]    
+            this.dataList.push(dt);
+          })
     }
 }
 
