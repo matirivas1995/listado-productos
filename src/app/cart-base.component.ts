@@ -43,7 +43,7 @@ export class CartBaseComponent{
             item.precio=cart.producto.precio*cart.quantity;
             item.id=cart.producto.id;
             cart.producto.cantidad = cart.producto.cantidad - cart.quantity;
-            alert("Compra realizada con exito")
+            //alert("Compra realizada con exito")
             this.firebaseService.updateProducto(cart.producto.id,cart.producto);  
             this.itemList.push(item);       
         }
@@ -55,5 +55,6 @@ export class CartBaseComponent{
         this.firebaseService.setVentas(this.venta);
         this.cartList.length=0;
         this.cartService.reloadCart(this.cartList);
+        alert("Compra realizada con exito")                
     };
 }
