@@ -17,12 +17,17 @@ export class AdminComponent implements OnInit {
   echarts = Chart;
   constructor(private firebaseService:FirebaseService) { }
   ventas:any;
-  barrasList : Barras[];
+  barrasList : Barras[]=[];
   lineasList : Lines[]=[];
   stackList :  Stack[]=[];
   month = ["Ago","Sep","Oct","Nov","Dic"];
   public barraSubject = new BehaviorSubject([]);
   lista: any;
+  startDate:string="Ago";
+  endDate:string="Dic";
+  mesActual:number;
+  mesMin: number;
+  mesMax: number;
 
   cantidad_productos:number[]=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
   nombres_productos:string[]=[""];
@@ -32,6 +37,11 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this.firebaseService.getVentas().subscribe(ventas => {
         this.ventas = ventas;
+        this.mesMin = this.monthGenerate(this.startDate);
+        this.mesMax = this.monthGenerate(this.endDate);
+        this.barrasList=[];
+        this.lineasList=[];
+        this.stackList=[];
         this.cargarBarras();
         this.loadBarras();
         this.showChartMati();
@@ -47,28 +57,31 @@ export class AdminComponent implements OnInit {
   cargarBarras(){
     this.ventas.forEach(venta => {
         var fecha = venta.fecha.substr(4,3);
-        venta.items.forEach(element => {
-          let current = this.barraSubject.getValue();
-          let dup = current.find(c=>c.name==element.producto);
-          if(dup) {
-            for(var i=0;i<this.month.length;i++){
-              if(this.month[i]==fecha){
-                dup.data[i]=dup.data[i]+element.cantidad;
-              }
-            }
-          }
-          else{
-            var barra = new Barras();
-            barra.name=element.producto;
-            for(var i=0;i<this.month.length;i++){
-              if(this.month[i]==fecha){
-                barra.data[i]= barra.data[i]+element.cantidad;
-              }
-            }
-            current.push(barra);
-            this.barraSubject.next(current);
-          }
-        });
+        this.mesActual = this.monthGenerate(fecha);
+        if (this.mesActual>=this.mesMin && this.mesActual<=this.mesMax){
+            venta.items.forEach(element => {
+                let current = this.barraSubject.getValue();
+                let dup = current.find(c=>c.name==element.producto);
+                if(dup) {
+                  for(var i=0;i<this.month.length;i++){
+                    if(this.month[i]==fecha ){
+                      dup.data[i]=dup.data[i]+element.cantidad;
+                    }
+                  }
+                }
+                else{
+                  var barra = new Barras();
+                  barra.name=element.producto;
+                  for(var i=0;i<this.month.length;i++){
+                    if(this.month[i]==fecha){
+                      barra.data[i]= barra.data[i]+element.cantidad;
+                    }
+                  }
+                  current.push(barra);
+                  this.barraSubject.next(current);
+                }
+              });
+        }
     });
   }
   loadBarras(){
@@ -298,6 +311,20 @@ export class AdminComponent implements OnInit {
               },
               series: this.stackList
           });
+    }
+    monthGenerate(mesnum){
+        switch(mesnum){
+            case "Ago":
+                return 0;
+            case "Sep":
+                return 1;
+            case "Oct":
+                return 2;
+            case "Nov":
+                return 3;
+            case "Dic":
+                return 4;
+            }
     }
 }
 
