@@ -20,7 +20,7 @@ export class FirebaseService {
     return this.ventas;
   }
   setVentas(venta){
-    this.af.database.ref('/ventas/'+venta.id).set(venta)
+    this.af.database.ref('/ventas').push(venta);    
   }
 
 

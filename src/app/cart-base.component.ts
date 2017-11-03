@@ -51,7 +51,6 @@ export class CartBaseComponent{
         this.venta.total=this.totalPrice;
         const currentDate = (new Date()).toString();
         this.venta.fecha=currentDate;
-        this.venta.id=6;
         console.log(this.venta);
         this.firebaseService.setVentas(this.venta);
         this.cartList.length=0;
